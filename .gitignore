@@ -86,3 +86,5 @@ Temporary Items
 .apdisk
 
 # ============================ 其他文件 ============================
+/JavaWeb_7.1_Mybatis/MybatisPlus1-Mybatis-Plus/target/
+/JavaWeb_7.1_Mybatis/MybatisPlus2-Mybatis-Plus-Spring/target/

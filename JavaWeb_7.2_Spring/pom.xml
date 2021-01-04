@@ -6,8 +6,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <!-- 本工程项目信息 -->
+    <groupId>com.loto</groupId>
     <artifactId>JavaWeb_7.2_Spring</artifactId>
     <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
 
     <!-- 解决Language Level版本问题 -->
     <properties>
