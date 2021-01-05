@@ -1,5 +1,6 @@
 package com.loto.pojo;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,8 +18,34 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor     // 生成全参构造
 @TableName("mp_user")   // 指定数据库表名
 public class User {
+    /**
+     * 主键生成策略
+     * */
+    //@TableId(type = IdType.AUTO)
     private Long id;
+
+    /**
+     * 查询的时候，返回该字段的值
+     * */
+    @TableField(select = true)
     private String name;
+
+    /**
+    * 查询的时候，不返回该字段的值
+    * */
+    @TableField(select = false)
     private Integer age;
-    private String email;
+
+    /**
+     * 解决字段名不一致问题
+     * */
+    @TableField(value = "email")
+    private String mail;
+
+    /**
+     * 该字段在数据库表中不存在
+     * */
+    @TableField(exist = false)
+    private String address;
+
 }
