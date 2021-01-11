@@ -15,7 +15,8 @@ import java.util.List;
 
 public interface UserMapper extends BaseMapper<User> {
     /**
-     * 查询所有用户
+     * 注解式：自定义 sql
+     * <p>查询所有用户
      */
     @Select("SELECT * FROM mp_user")
     public List<User> findAll();

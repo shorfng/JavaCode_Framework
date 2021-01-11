@@ -24,7 +24,7 @@ public class Test_MybatisPlus3_SpringbootApplication {
     private UserMapper userMapper;
 
     /**
-     * 删除 log4j.properties 的内容可以使得打印更加清晰
+     * 使用 MybatisPlus 提供的方法
      * */
     @Test
     public void testSelect() {
@@ -34,6 +34,9 @@ public class Test_MybatisPlus3_SpringbootApplication {
         }
     }
 
+    /**
+     * 注解式：自定义 sql
+     * */
     @Test
     public void testFindAll() {
         List<User> all = userMapper.findAll();
