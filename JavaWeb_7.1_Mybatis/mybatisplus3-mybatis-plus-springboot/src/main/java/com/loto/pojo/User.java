@@ -1,7 +1,6 @@
 package com.loto.pojo;
 
 import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,7 +15,7 @@ import lombok.NoArgsConstructor;
 @Data                   // Lombok 插件自动生成 getter 和 setter
 @NoArgsConstructor      // 生成无参构造
 @AllArgsConstructor     // 生成全参构造
-@TableName("mp_user")   // 指定数据库表名
+//@TableName("mp_user")   // 指定数据库表名（全局配置 tablePrefix 后，可省略 @TableName() 配置）
 public class User {
     /**
      * 主键生成策略
@@ -48,4 +47,9 @@ public class User {
     @TableField(exist = false)
     private String address;
 
+    /**
+     * 该字段满足从经典数据库列名 A_COLUMN（下划线命名） 到经典 Java 属性名 aColumn（驼峰命名） 的类似映射
+     * <p> info_mark -> infoMark
+     * */
+    private String infoMark;
 }
