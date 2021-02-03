@@ -1,4 +1,4 @@
-package com.loto.crud;
+package com.loto.a.crud;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;

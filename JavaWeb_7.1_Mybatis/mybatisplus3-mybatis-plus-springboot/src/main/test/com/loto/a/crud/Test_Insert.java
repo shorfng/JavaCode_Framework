@@ -1,4 +1,4 @@
-package com.loto.crud;
+package com.loto.a.crud;
 
 import com.loto.mapper.UserMapper;
 import com.loto.pojo.User;
