@@ -1,4 +1,4 @@
--- 创建用户表
+# 创建用户表
 DROP TABLE IF EXISTS mp_user;
 CREATE TABLE mp_user
 (
@@ -10,8 +10,9 @@ CREATE TABLE mp_user
     PRIMARY KEY (id)
 ) comment = 'MybatisPlus的user表';
 
--- 新增 version 字段，默认为1
+# 新增 version 字段，默认为1
 ALTER TABLE `mp_user` ADD COLUMN `version` int (10) NULL AFTER `info_mark`;
 UPDATE `mp_user` SET `version`='1';
 
-
+# 新增 deleted 字段，默认为0
+ALTER TABLE `mp_user` ADD COLUMN `deleted` int(1) NULL DEFAULT 0 COMMENT '1删除，0未删除' AFTER `version`;
