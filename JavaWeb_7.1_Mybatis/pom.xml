@@ -18,7 +18,8 @@
 
     <!-- 子工程信息 -->
     <modules>
-        <module>Mybatis1-Custom</module>
+        <module>mybatis1-custom-use</module>
+        <module>mybatis2-custom</module>
         <module>MybatisPlus1-Mybatis-Plus</module>
         <module>MybatisPlus2-Mybatis-Plus-Spring</module>
     </modules>
