@@ -2,6 +2,9 @@
 INSERT INTO user (id, username, password)
 VALUES (1, 'TD', '123');
 
+INSERT INTO user (id, username, password)
+VALUES (2, 'CJ', '321');
+
 # 插入 - mp_user
 INSERT INTO mp_user (id, name, age, email)
 VALUES (1, 'Jone', 18, 'test1@baomidou.com'),

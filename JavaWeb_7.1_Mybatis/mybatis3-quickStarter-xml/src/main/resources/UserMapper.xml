@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace : 名称空间，与id组成sql的唯一标识 -->
+<mapper namespace="IUserDao">
+    <!-- parameterType：参数类型 -->
+    <!-- resultType：返回值类型 -->
+
+    <!-- 查询全部 -->
+    <select id="findAll" resultType="user">
+        <include refid="selectUser"/>
+    </select>
+
+    <sql id="selectUser">
+        select *
+        from user
+    </sql>
+
+    <!-- 多条件组合查询：if -->
+    <select id="findByCondition" parameterType="user" resultType="user">
+        <include refid="selectUser"/>
+        <where>
+            <if test="id !=null">
+                and id = #{id}
+            </if>
+            <if test="username !=null">
+                and username = #{username}
+            </if>
+        </where>
+    </select>
+
+    <!-- 多值查询：foreach -->
+    <select id="findByIds" parameterType="list" resultType="user">
+        <include refid="selectUser"/>
+        <where>
+            <foreach collection="array" open="id in (" close=")" item="id" separator=",">
+                #{id}
+            </foreach>
+        </where>
+    </select>
+
+    <!-- 添加用户 -->
+    <insert id="saveUser" parameterType="user">
+        insert into user (id, username)
+        values (#{id}, #{username})
+    </insert>
+
+    <!-- 修改 -->
+    <update id="updateUser" parameterType="user">
+        update user
+        set username = #{username}
+        where id = #{id}
+    </update>
+
+    <!-- 删除 -->
+    <delete id="deleteUser" parameterType="int">
+        delete
+        from user
+        where id = #{id}
+    </delete>
+</mapper>
