@@ -22,6 +22,8 @@
         <module>mybatis2-custom</module>
         <module>MybatisPlus1-Mybatis-Plus</module>
         <module>MybatisPlus2-Mybatis-Plus-Spring</module>
+        <module>mybatis3-quickStarter-xml</module>
+        <module>mybatis4-quickStarter-annotation</module>
     </modules>
 
 </project>
