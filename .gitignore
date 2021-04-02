@@ -88,6 +88,9 @@ Temporary Items
 # ============================ 其他文件 ============================
 /JavaWeb_7.1_Mybatis/mybatis1-custom-use/target/
 /JavaWeb_7.1_Mybatis/mybatis2-custom/target/
+/JavaWeb_7.1_Mybatis/mybatis3-quickStarter-xml/target/
+/JavaWeb_7.1_Mybatis/mybatis4-quickStarter-annotation/target/
+
 /JavaWeb_7.1_Mybatis/MybatisPlus1-Mybatis-Plus/target/
 /JavaWeb_7.1_Mybatis/MybatisPlus2-Mybatis-Plus-Spring/target/
 /JavaWeb_7.1_Mybatis/mybatisplus3-mybatis-plus-springboot/target/

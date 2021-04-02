@@ -25,23 +25,24 @@ public class Test_Select {
 	 */
 	@Test
 	public void test_findAll_XML() throws IOException {
-		// 1.Resources工具类，配置文件的加载，把配置文件加载成字节输入流
+		// 1、加载核心配置文件（使用 Resources 工具类把配置文件加载成字节输入流）
 		InputStream resourceAsStream = Resources.getResourceAsStream("sqlMapConfig.xml");
 
-		// 2.解析了配置文件，并创建了sqlSessionFactory工厂
+		// 2、解析了配置文件，并创建 sqlSessionFactory 工厂对象
 		SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(resourceAsStream);
 
-		// 3.生产sqlSession
+		// 3、获得sqlSession对象
 		// 默认开启一个事务，但是该事务不会自动提交，在进行增删改操作时，要手动提交事务
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 
-		// 4.sqlSession调用方法：查询所有selectList
-		// 查询单个：selectOne 添加：insert  修改：update 删除：delete
+		// 4、执行sql语句（使用 sqlSession 调用方法）
+		// 查询单个：selectOne  查询所有selectList  添加：insert  修改：update  删除：delete
 		List<User> users = sqlSession.selectList("IUserDao.findAll");
 		for (User user : users) {
 			System.out.println(user);
 		}
 
+		// 5、释放资源
 		sqlSession.close();
 	}
 

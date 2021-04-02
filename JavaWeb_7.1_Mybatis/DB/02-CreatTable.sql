@@ -29,3 +29,4 @@ ALTER TABLE `mp_user`
 # 新增 deleted 字段，默认为0
 ALTER TABLE `mp_user`
     ADD COLUMN `deleted` int(1) NULL DEFAULT 0 COMMENT '1删除，0未删除' AFTER `version`;
+
