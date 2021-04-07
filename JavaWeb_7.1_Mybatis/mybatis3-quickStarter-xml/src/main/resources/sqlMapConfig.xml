@@ -11,7 +11,7 @@
         <!--类型1：给单独某个实体起别名-->
         <!--<typeAlias type="com.loto.pojo.User" alias="user"/>-->
 
-        <!--类型2：批量起别名:，该包下所有的类的本身的类名，别名还不区分大小写 -->
+        <!--类型2：批量起别名，该包下所有的类的本身的类名，别名还不区分大小写 -->
         <package name="com.loto.pojo"/>
     </typeAliases>
 
@@ -35,6 +35,18 @@
 
     <!-- 引入映射配置文件 -->
     <mappers>
+        <!-- 使⽤相对于类路径的资源引⽤ -->
+        <!--<mapper resource="com/loto/UserMapper.xml"/>-->
         <mapper resource="UserMapper.xml"/>
+        <mapper resource="OrderMapper.xml"/>
+
+        <!-- 使⽤完全限定资源定位符（URL）-->
+        <!--<mapper url="file:///com/loto/UserMapper.xml"/>-->
+
+        <!-- 使⽤映射器接⼝实现类的完全限定类名 -->
+        <!--<mapper class="com.loto.UserMapper"/>-->
+
+        <!-- 将包内的映射器接⼝实现全部注册为映射器 -->
+        <!--<package name="com.loto"/>-->
     </mappers>
 </configuration>

@@ -1,5 +1,6 @@
 package com.loto.test;
 
+import com.loto.mapper.IUserMapper;
 import com.loto.pojo.User;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -26,10 +27,26 @@ public class Test_Insert {
 		SqlSession sqlSession = sqlSessionFactory.openSession(true);
 
 		User user = new User();
-		user.setId(3);
 		user.setUsername("Jan");
-		sqlSession.insert("IUserDao.saveUser", user);
+		sqlSession.insert("com.loto.dao.IUserMapper.saveUser", user);
 
 		sqlSession.close();
 	}
+
+	@Test
+	public void test_Insert_Mapper() throws IOException {
+		InputStream resourceAsStream = Resources.getResourceAsStream("sqlMapConfig.xml");
+		SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(resourceAsStream);
+		//事务自动提交
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
+
+		User user = new User();
+		user.setUsername("Jan");
+
+		IUserMapper mapper = sqlSession.getMapper(IUserMapper.class);
+		mapper.saveUser(user);
+
+		sqlSession.close();
+	}
+
 }

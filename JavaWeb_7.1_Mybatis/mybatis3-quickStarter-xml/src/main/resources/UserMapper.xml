@@ -4,15 +4,15 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- namespace : 名称空间，与id组成sql的唯一标识 -->
-<mapper namespace="IUserDao">
+<mapper namespace="com.loto.mapper.IUserMapper">
     <!-- parameterType：参数类型 -->
     <!-- resultType：返回值类型 -->
 
     <!-- 查询全部 -->
+    <!-- SQL⽚段抽取：Sql 中可将重复的 sql 提取出来，使⽤时⽤ include 引⽤即可，最终达到 sql 重⽤的⽬的 -->
     <select id="findAll" resultType="user">
         <include refid="selectUser"/>
     </select>
-
     <sql id="selectUser">
         select *
         from user
@@ -32,6 +32,13 @@
     </select>
 
     <!-- 多值查询：foreach -->
+    <!-- 标签⽤于遍历集合
+        collection：代表要遍历的集合元素，注意编写时不要写#{}
+        open：代表语句的开始部分
+        close：代表结束部分
+        item：代表遍历集合的每个元素，⽣成的变量名
+        sperator：代表分隔符
+    -->
     <select id="findByIds" parameterType="list" resultType="user">
         <include refid="selectUser"/>
         <where>
@@ -60,4 +67,39 @@
         from user
         where id = #{id}
     </delete>
+
+    <!-- 手动配置实体属性与表字段的映射关系 -->
+    <resultMap id="userMap" type="com.loto.pojo.User">
+        <result property="id" column="uid"/>
+        <result property="username" column="username"/>
+
+        <collection property="orderList" ofType="com.loto.pojo.Order">
+            <result property="id" column="id"/>
+            <result property="orderTime" column="orderTime"/>
+            <result property="total" column="total"/>
+        </collection>
+    </resultMap>
+
+    <!-- 一对多查询（1个用户多条订单记录）-->
+    <select id="findAllUser" resultMap="userMap">
+        select * from user u left join orders o on u.id = o.uid
+    </select>
+
+    <!-- 手动配置实体属性与表字段的映射关系 -->
+    <resultMap id="userRoleMap" type="com.loto.pojo.User">
+        <result property="id" column="userid"/>
+        <result property="username" column="username"/>
+
+        <collection property="roleList" ofType="com.loto.pojo.Role">
+            <result property="id" column="roleid"/>
+            <result property="roleName" column="roleName"/>
+            <result property="roleDesc" column="roleDesc"/>
+        </collection>
+    </resultMap>
+
+    <!-- 多对多查询（查询多个⽤户同时查询出每个⽤户的所有⻆⾊）-->
+    <select id="findAllUserAndRole" resultMap="userRoleMap">
+        select * from user u left join user_role ur on u.id = ur.userid
+                             left join roles r on r.id = ur.roleid
+    </select>
 </mapper>

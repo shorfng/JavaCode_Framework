@@ -1,5 +1,6 @@
 package com.loto.test;
 
+import com.loto.mapper.IUserMapper;
 import com.loto.pojo.User;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -28,9 +29,26 @@ public class Test_Update {
 		User user = new User();
 		user.setId(3);
 		user.setUsername("loto");
-		sqlSession.update("IUserDao.updateUser", user);
+		sqlSession.update("com.loto.dao.IUserMapper.updateUser", user);
 		sqlSession.commit();
 
+		sqlSession.close();
+	}
+
+	@Test
+	public void test_Update_Mapper() throws IOException {
+		InputStream resourceAsStream = Resources.getResourceAsStream("sqlMapConfig.xml");
+		SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(resourceAsStream);
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+
+		User user = new User();
+		user.setId(3);
+		user.setUsername("shorfng");
+
+		IUserMapper mapper = sqlSession.getMapper(IUserMapper.class);
+		mapper.updateUser(user);
+
+		sqlSession.commit();
 		sqlSession.close();
 	}
 }

@@ -1,5 +1,6 @@
 package com.loto.test;
 
+import com.loto.mapper.IUserMapper;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -18,14 +19,27 @@ import java.io.InputStream;
 
 public class Test_Delete {
 	@Test
-	public void test4() throws IOException {
+	public void test_Delete() throws IOException {
 		InputStream resourceAsStream = Resources.getResourceAsStream("sqlMapConfig.xml");
 		SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(resourceAsStream);
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 
-		sqlSession.delete("IUserDao.deleteUser",3);
+		sqlSession.delete("com.loto.dao.IUserMapper.deleteUser",3);
 		sqlSession.commit();
 
+		sqlSession.close();
+	}
+
+	@Test
+	public void test_Delete_Mapper() throws IOException {
+		InputStream resourceAsStream = Resources.getResourceAsStream("sqlMapConfig.xml");
+		SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(resourceAsStream);
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+
+		IUserMapper mapper = sqlSession.getMapper(IUserMapper.class);
+		mapper.deleteUser(4);
+
+		sqlSession.commit();
 		sqlSession.close();
 	}
 }
