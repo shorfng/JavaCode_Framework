@@ -49,7 +49,7 @@ public interface IUserMapper {
 	public List<User> findAllUser() throws IOException;
 
 	/**
-	 * 多对多查询（查询多个⽤户同时查询出每个⽤户的所有⻆⾊）
+	 * 多对多查询（查询多个用户同时查询出每个用户的所有角色）
 	 */
 	List<User> findAllUserAndRole();
 }

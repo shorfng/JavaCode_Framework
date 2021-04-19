@@ -141,6 +141,9 @@ public class Test_Select {
 		}
 	}
 
+	/**
+	 * 多对多查询（查询多个用户同时查询出每个用户的所有角色）
+	 */
 	@Test
 	public void ManyToMany() throws IOException {
 		InputStream resourceAsStream = Resources.getResourceAsStream("sqlMapConfig.xml");

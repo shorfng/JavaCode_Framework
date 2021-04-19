@@ -19,6 +19,9 @@ import java.io.InputStream;
  */
 
 public class Test_Insert {
+	/**
+	 * 【传统开发方式】插入：通过 namespace + id
+	 */
 	@Test
 	public void test_Insert() throws IOException {
 		InputStream resourceAsStream = Resources.getResourceAsStream("sqlMapConfig.xml");
@@ -33,6 +36,9 @@ public class Test_Insert {
 		sqlSession.close();
 	}
 
+	/**
+	 * 【Mapper 代理开发方式】插入：通过方法
+	 */
 	@Test
 	public void test_Insert_Mapper() throws IOException {
 		InputStream resourceAsStream = Resources.getResourceAsStream("sqlMapConfig.xml");
