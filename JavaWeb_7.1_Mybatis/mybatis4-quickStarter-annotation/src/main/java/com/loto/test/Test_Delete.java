@@ -6,32 +6,32 @@ import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.junit.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.List;
-import org.junit.Test;
 
 /**
  * <p>Author：蓝田_Loto</p>
- * <p>Date：2021-04-02 16:04</p>
- * <p>PageName：Test_Mybatis.java</p>
- * Function：注解式
+ * <p>Date：2021-04-19 16:10</p>
+ * <p>PageName：Test_Delete.java</p>
+ * Function：
  */
 
-public class Test_Mybatis {
+public class Test_Delete {
+	private IUserMapper userMapper;
+
+	/**
+	 * 根据 id 删除一条用户数据（因为本案例涉及的表字段有外键关联，所以执行会报错）
+	 */
 	@Test
-	public void test_selectAll() throws IOException {
+	public void testAdd() throws IOException {
 		InputStream resourceAsStream = Resources.getResourceAsStream("sqlMapConfig.xml");
 		SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(resourceAsStream);
-		SqlSession sqlSession = sqlSessionFactory.openSession();
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		userMapper = sqlSession.getMapper(IUserMapper.class);
 
-		IUserMapper mapper = sqlSession.getMapper(IUserMapper.class);
-		List<User> allUser = mapper.selectAllUser();
-		for (User user : allUser) {
-			System.out.println(user);
-		}
+		userMapper.deleteUser(2);
 	}
-
 
 }

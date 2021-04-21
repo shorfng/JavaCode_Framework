@@ -8,9 +8,7 @@ CREATE TABLE user
     PRIMARY KEY (id)
 ) comment = 'Mybatis 的 user表'
     ENGINE = InnoDB
-    AUTO_INCREMENT = 3
     DEFAULT CHARSET = utf8;
-
 
 # 创建 orders 订单表
 DROP TABLE IF EXISTS `orders`;
@@ -25,7 +23,6 @@ CREATE TABLE `orders`
     CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`uid`) REFERENCES `user` (`id`) ON UPDATE CASCADE
 ) comment = 'Mybatis 的 orders 订单表'
     ENGINE = InnoDB
-    AUTO_INCREMENT = 4
     DEFAULT CHARSET = utf8;
 
 # 创建 roles 角色表
@@ -38,7 +35,6 @@ CREATE TABLE `roles`
     PRIMARY KEY (`id`)
 ) comment = 'Mybatis 的 roles 角色表'
     ENGINE = InnoDB
-    AUTO_INCREMENT = 3
     DEFAULT CHARSET = utf8;
 
 # 创建 user_role 用户角色表
