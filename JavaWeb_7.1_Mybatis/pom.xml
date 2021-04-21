@@ -20,6 +20,7 @@
     <modules>
         <module>mybatis1-custom-use</module>
         <module>mybatis2-custom</module>
+        <module>mybatis5-cache</module>
         <module>MybatisPlus1-Mybatis-Plus</module>
         <module>MybatisPlus2-Mybatis-Plus-Spring</module>
         <module>mybatis3-quickStarter-xml</module>
