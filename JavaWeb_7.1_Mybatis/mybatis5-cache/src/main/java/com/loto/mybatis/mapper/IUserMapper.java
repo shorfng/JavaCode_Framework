@@ -1,10 +1,12 @@
 package com.loto.mybatis.mapper;
 
 import com.loto.mybatis.pojo.User;
+import org.apache.ibatis.annotations.CacheNamespace;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
+import org.mybatis.caches.redis.RedisCache;
 import tk.mybatis.mapper.common.Mapper;
 
 import java.util.List;
@@ -16,7 +18,11 @@ import java.util.List;
  * Function：
  */
 
-public interface IUserMapper extends Mapper<User> {
+
+//public interface IUserMapper extends Mapper<User> {
+
+//@CacheNamespace(implementation = RedisCache.class)//开启二级缓存
+public interface IUserMapper {
 	/**
 	 * 根据 id 更新用户
 	 * @param user

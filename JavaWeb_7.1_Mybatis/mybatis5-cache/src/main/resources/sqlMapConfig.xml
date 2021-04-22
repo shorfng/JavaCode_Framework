@@ -6,7 +6,7 @@
     <!-- 加载外部的properties文件 -->
     <properties resource="jdbc.properties"/>
 
-    <!-- 开启二级缓存 -->
+    <!--开启二级缓存-->
     <settings>
         <setting name="cacheEnabled" value="true"/>
     </settings>

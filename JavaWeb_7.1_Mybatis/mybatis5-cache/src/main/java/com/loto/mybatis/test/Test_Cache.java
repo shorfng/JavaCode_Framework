@@ -19,19 +19,15 @@ import java.io.InputStream;
  */
 
 public class Test_Cache {
-	private IUserMapper userMapper;
-	private SqlSession sqlSession;
-	private SqlSessionFactory sqlSessionFactory;
-
 	/**
 	 * 一级缓存
 	 */
 	@Test
 	public void test_firstCache() throws IOException {
 		InputStream resourceAsStream = Resources.getResourceAsStream("sqlMapConfig.xml");
-		sqlSessionFactory = new SqlSessionFactoryBuilder().build(resourceAsStream);
-		sqlSession = sqlSessionFactory.openSession();
-		userMapper = sqlSession.getMapper(IUserMapper.class);
+		SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(resourceAsStream);
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		IUserMapper userMapper = sqlSession.getMapper(IUserMapper.class);
 
 		// 第一次查询id为1的用户
 		// 第⼀次发起查询⽤户id为1的⽤户信息，先去找缓存中是否有id为1的⽤户信息
@@ -57,24 +53,55 @@ public class Test_Cache {
 		System.out.println(user1 == user3);
 	}
 
+
+	@Test
+	public void testTwoCache() throws IOException {
+		InputStream resourceAsStream = Resources.getResourceAsStream("sqlMapConfig.xml");
+		SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(resourceAsStream);
+
+		// 根据 sqlSessionFactory 产⽣ session
+		SqlSession sqlSession1 = sqlSessionFactory.openSession();
+		SqlSession sqlSession2 = sqlSessionFactory.openSession();
+
+		IUserMapper userMapper1 = sqlSession1.getMapper(IUserMapper.class);
+		IUserMapper userMapper2 = sqlSession2.getMapper(IUserMapper.class);
+
+		// 第⼀次查询，发出sql语句，并将查询的结果放⼊缓存中
+		User u1 = userMapper1.findUserById(1);
+		System.out.println(u1);
+		sqlSession1.close(); //第⼀次查询完后关闭 sqlSession
+
+		// 第⼆次查询，即使sqlSession1已经关闭了，这次查询依然不发出sql语句
+		User u2 = userMapper2.findUserById(1);
+		System.out.println(u2);
+		sqlSession2.close();
+	}
+
+
 	/**
 	 * 二级缓存
 	 */
 	@Test
 	public void test_SecondCache() throws IOException {
 		InputStream resourceAsStream = Resources.getResourceAsStream("sqlMapConfig.xml");
-		sqlSessionFactory = new SqlSessionFactoryBuilder().build(resourceAsStream);
-		sqlSession = sqlSessionFactory.openSession();
-		userMapper = sqlSession.getMapper(IUserMapper.class);
+		SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(resourceAsStream);
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		IUserMapper userMapper = sqlSession.getMapper(IUserMapper.class);
+
 
 		SqlSession sqlSession1 = sqlSessionFactory.openSession();
 		SqlSession sqlSession2 = sqlSessionFactory.openSession();
+
+
 		SqlSession sqlSession3 = sqlSessionFactory.openSession();
 
 		IUserMapper mapper1 = sqlSession1.getMapper(IUserMapper.class);
 		IUserMapper mapper2 = sqlSession2.getMapper(IUserMapper.class);
 		IUserMapper mapper3 = sqlSession3.getMapper(IUserMapper.class);
 
+		// 第⼀次查询，会将数据放⼊缓存中，然后第⼆次查询则会直接去缓存中取
+		// ⼀级缓存是基于sqlSession的，⽽⼆级缓存是基于mapper⽂件的namespace的，也就是说多个sqlSession可以共享⼀个mapper中的⼆级缓存区域，
+		// 并且如果两个mapper的namespace 相同，即使是两个mapper,那么这两个mapper中执⾏sql查询到的数据也将存在相同的⼆级缓存区域 中
 		User user1 = mapper1.findUserById(1);
 		sqlSession1.close(); //清空一级缓存
 
