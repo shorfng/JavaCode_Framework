@@ -2,14 +2,9 @@ package com.loto.mybatis.mapper;
 
 import com.loto.mybatis.pojo.User;
 import org.apache.ibatis.annotations.CacheNamespace;
-import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
-import org.mybatis.caches.redis.RedisCache;
-import tk.mybatis.mapper.common.Mapper;
-
-import java.util.List;
 
 /**
  * <p>Author：蓝田_Loto</p>
@@ -18,39 +13,26 @@ import java.util.List;
  * Function：
  */
 
-
-//public interface IUserMapper extends Mapper<User> {
-
-//@CacheNamespace(implementation = RedisCache.class)//开启二级缓存
+// 开启二级缓存
+@CacheNamespace
 public interface IUserMapper {
-	/**
-	 * 根据 id 更新用户
-	 * @param user
-	 */
-	@Update("update user set username = #{username} where id = #{id}")
-	public void updateUser(User user);
+    /**
+     * 根据 id 更新用户
+     *
+     * @param user
+     */
+    @Update("update user set username = #{username} where id = #{id}")
+    public void updateUser(User user);
 
-	/**
-	 * 查询用户
-	 *
-	 * @return
-	 */
-	@Select("select * from user")
-	public List<User> selectAllUser();
+    /**
+     * 根据 id 查询用户
+     *
+     * @param id 用户id
+     * @return
+     */
+    // userCache：⽤来设置本次查询是否禁⽤⼆级缓存，默认为true
+    @Options(useCache = true)
+    @Select({"select * from user where id = #{id}"})
+    public User findUserById(Integer id);
 
-	/**
-	 * 根据 id 查询用户
-	 * @param id 用户id
-	 * @return
-	 */
-	@Options(useCache = true)
-	@Select({"select * from user where id = #{id}"})
-	public User findUserById(Integer id);
-
-	/**
-	 * 根据 id 删除用户
-	 * @param id 用户id
-	 */
-	@Delete("delete from user where id = #{id}")
-	public void deleteUser(Integer id);
 }
