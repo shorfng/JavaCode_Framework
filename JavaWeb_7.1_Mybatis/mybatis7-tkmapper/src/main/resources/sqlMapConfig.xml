@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+    <!-- 加载外部的properties文件 -->
+    <properties resource="jdbc.properties"/>
+
+    <!-- 给实体类的全限定类名给别名 -->
+    <typeAliases>
+        <!--类型1：给单独某个实体起别名-->
+        <!--<typeAlias type="com.loto.pojo.User" alias="user"/>-->
+
+        <!--类型2：批量起别名:，该包下所有的类的本身的类名，别名还不区分大小写 -->
+        <package name="com.loto.pojo"/>
+    </typeAliases>
+
+    <plugins>
+        <plugin interceptor="tk.mybatis.mapper.mapperhelper.MapperInterceptor">
+            <!--指定当前通用mapper接口使用的是哪一个-->
+            <property name="mappers" value="tk.mybatis.mapper.common.Mapper"/>
+        </plugin>
+    </plugins>
+
+    <!-- 指定默认的环境名称 -->
+    <environments default="development">
+        <!-- 指定当前环境的名称 -->
+        <environment id="development">
+            <!-- 指定事务的管理类型：交由JDBC进行管理 -->
+            <transactionManager type="JDBC"/>
+
+            <!-- 指定当前数据源类型：连接池 -->
+            <dataSource type="POOLED">
+                <!-- 数据源配置的基本参数 -->
+                <property name="driver" value="${jdbc.driver}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <!-- 引入映射配置文件 -->
+    <mappers>
+        <package name="com.loto.mybatis.mapper"/>
+    </mappers>
+</configuration>
