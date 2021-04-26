@@ -16,9 +16,4 @@ public interface UserMapper_Mybatis {
      * 查询所有用户
      */
     public List<User> findAll();
-
-    /**
-     * 添加用户
-     */
-    public int insert(User user);
 }
