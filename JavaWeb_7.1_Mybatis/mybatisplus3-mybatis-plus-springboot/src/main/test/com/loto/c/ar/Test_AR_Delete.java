@@ -36,5 +36,4 @@ public class Test_AR_Delete {
 		System.out.println(delete);
 	}
 
-
 }

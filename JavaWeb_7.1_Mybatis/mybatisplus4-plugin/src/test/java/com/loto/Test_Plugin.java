@@ -30,6 +30,7 @@ public class Test_Plugin {
 		user.setAge(20);
 
 		// 当执行全表更新时，会抛出异常，有效防止一些误操作
+		// com.baomidou.mybatisplus.core.exceptions.MybatisPlusException: Prohibition of table update operation
 		int result = this.userMapper.update(user, null);
 		System.out.println("result = " + result);
 	}

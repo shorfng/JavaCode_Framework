@@ -1,7 +1,6 @@
 package com.loto.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.loto.pojo.User;
 import com.loto.pojo.UserModel;
 import org.apache.ibatis.annotations.Select;
 
