@@ -22,7 +22,6 @@
     <!-- 将sqlSessionFactory对象的创建交给spring -->
     <bean id="sqlSessionFactory" class="com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
-        <property name="configLocation" value="classpath:sqlMapConfig.xml"/>
     </bean>
 
     <!-- mapper映射扫描 -->

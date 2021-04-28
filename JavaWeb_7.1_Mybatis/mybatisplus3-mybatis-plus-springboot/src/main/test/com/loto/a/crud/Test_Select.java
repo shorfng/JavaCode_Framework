@@ -97,11 +97,11 @@ public class Test_Select {
     public void testSelectPage() {
         // 第一个参数：当前页
         // 第二个参数：每页显示条数
-        Page<User> page = new Page<>(2, 2);
+        Page<User> page = new Page<>(1, 2);
 
         // 查询年龄大于18的
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
-        queryWrapper.gt("age", 18);
+        queryWrapper.gt("age", 10);
 
         IPage<User> userIPage = userMapper.selectPage(page, queryWrapper);
         System.out.println("总条数：" + userIPage.getTotal());
