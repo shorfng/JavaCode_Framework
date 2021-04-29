@@ -1,23 +1,23 @@
 # GitHub仓库代码
 
-| 仓库名称                          | 涵盖内容                                           |
-| --------------------------------- | -------------------------------------------------- |
-| MyCode_JavaDev                    | 【Java】01_JavaBasics（Java基础）                  |
-|                                   | 【Java】02_JavaReinforce（Java加强）               |
-|                                   | 【Java】03_JavaInterface（Java界面）               |
-| MyCode_JavaWeb_Front              | 【Java】04_JavaWeb_Front（前端）                   |
-| MyCode_JavaWeb_Database           | 【Java】05_JavaWeb_Database（数据库）              |
-| MyCode_JavaWeb_Server             | 【Java】06_JavaWeb_Server（服务器端）              |
-| MyCode_JavaWeb_Framework          | 【Java】07_JavaWeb_Framework（开源框架）           |
-| MyCode_JavaWeb_SourceCodeAnalysis | 【Java】08_JavaWeb_SourceCodeAnalysis（源码分析）  |
-| MyCode_Architecture_Distributed   | 【Java】09_Architecture_Distributed（分布式架构）  |
-| MyCode_Architecture_MicroService  | 【Java】10_Architecture_MicroService（微服务架构） |
-| MyCode_JavaExpert                 | 【Java】11_JavaExpert（高阶）                      |
+| 仓库名称                                                     | 涵盖内容                                           |
+| ------------------------------------------------------------ | -------------------------------------------------- |
+| [MyCode_JavaDev](https://github.com/shorfng/MyCode_JavaDev)  | 【Java】01_JavaBasics（Java基础）                  |
+|                                                              | 【Java】02_JavaReinforce（Java加强）               |
+|                                                              | 【Java】03_JavaInterface（Java界面）               |
+| [MyCode_JavaWeb_Front](https://github.com/shorfng/MyCode_JavaWeb_Front) | 【Java】04_JavaWeb_Front（前端）                   |
+| [MyCode_JavaWeb_Database](https://github.com/shorfng/MyCode_JavaWeb_Database) | 【Java】05_JavaWeb_Database（数据库）              |
+| [MyCode_JavaWeb_Server](https://github.com/shorfng/MyCode_JavaWeb_Server) | 【Java】06_JavaWeb_Server（服务器端）              |
+| [MyCode_JavaWeb_Framework](https://github.com/shorfng/MyCode_JavaWeb_Framework) | 【Java】07_JavaWeb_Framework（开源框架）           |
+| MyCode_JavaWeb_SourceCodeAnalysis                            | 【Java】08_JavaWeb_SourceCodeAnalysis（源码分析）  |
+| MyCode_Architecture_Distributed                              | 【Java】09_Architecture_Distributed（分布式架构）  |
+| MyCode_Architecture_MicroService                             | 【Java】10_Architecture_MicroService（微服务架构） |
+| MyCode_JavaExpert                                            | 【Java】11_JavaExpert（高阶）                      |
+| MyCode_EfficiencyTools                                       | 【Java】12_EfficiencyTools（效率工具）             |
 
 
 
 # JavaCode 目录
-
 - 写在前面
 
 ```java
@@ -28,7 +28,6 @@
 
 
 ### 【Java】01_Java_Basics（Java基础）
-
 - Java_1.1_Grammar（基础语法）
 - Java_1.2_Oriented（面向对象）
 - Java_1.3_Exception（异常处理）
@@ -40,7 +39,6 @@
 
 
 ### 【Java】02_Java_Reinforce（Java加强）
-
 - Java_2.1_ClassLoader（类加载器）
 - Java_2.2_Reflect（反射）
 - Java_2.3_JavaDelegate（Java代理）
@@ -53,7 +51,6 @@
 
 
 ### 【Java】03_Java_Interface（Java界面） - 目前没有代码
-
 - Java_3.1_AWT
 - Java_3.2_事件机制
 - Java_3.3_Swing
@@ -62,7 +59,6 @@
 
 
 ### 【Java】04_JavaWeb_Front（前端）
-
 - JavaWeb_4.1_HTML
 - JavaWeb_4.2_CSS
 - JavaWeb_4.3_Javascript
@@ -71,11 +67,11 @@
 - JavaWeb_4.4_jQuery_OCUpload
 - JavaWeb_4.4_jQuery_ZTree
 - JavaWeb_4.5_BootStrap
+- JavaWeb_4.6_Layui（前端框架）
 
 
 
 ### 【Java】05_JavaWeb_Database（数据库）
-
 - JavaWeb_5.0_DatabaseBasic（数据库基础）
 - JavaWeb_5.1_JDBC（数据库连接）
 - JavaWeb_5.2_MySQL
@@ -86,7 +82,6 @@
 
 
 ### 【Java】06_JavaWeb_Server（服务器端）
-
 - JavaWeb_6.1_XML（可扩展的标记语言）
 - JavaWeb_6.2_HTTP（超文本传输协议）
 - JavaWeb_6.3_Application Server（应用服务器） - 不需要建项目
@@ -100,9 +95,9 @@
 
 
 ### 【Java】07_JavaWeb_Framework（开源框架）
-
 - JavaWeb_7.1_Mybatis3
 - JavaWeb_7.2_Spring5
+- JavaWeb_7.3_SpringMVC
 
 
 
@@ -128,3 +123,48 @@
 - MicroService_10.0_Basic（微服务架构基础）
 
 
+
+### 【Java】11_JavaExpert（高阶）
+
+- JavaExpert_11.1_JVM
+
+
+
+### 【Java】12_EfficiencyTools（效率工具）
+
+- 12.1_DevTools（开发工具）
+    - IDEA
+    - DataGrip
+- 12.2_BuildTools（项目构建工具）
+    - Maven
+    - Gradle
+    - Ant
+- 12.3_VcsTools（源码管理工具）
+    - Git和GitLab
+    - Subversion（SVN）
+- 12.4_CodeQualityTools（代码质量管理工具）
+    - SonarQube
+- 12.5_UTTools（测试工具）
+    - JMeter
+    - PostMan
+    - SoapUI
+- 12.6_CITools（持续集成工具）
+    - Hudson
+    - Jenkins
+- 12.7_DevOps（运维部署）
+    - JDK
+    - Nacos
+    - Docker
+    - Kubernetes（K8S）
+- 12.8_DeployContainer （部署容器）
+    - ApacheTomcat
+
+
+
+### 【Java】13_拓展技能
+
+- Fiddler（抓包工具）
+
+
+
+> Author：蓝田_Loto
