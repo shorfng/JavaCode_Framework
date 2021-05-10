@@ -1,5 +1,7 @@
 package com.loto.mybatis.pojo;
 
+import lombok.Data;
+
 /**
  * <p>Author：蓝田_Loto</p>
  * <p>Date：2021-03-12 11:07</p>
@@ -7,6 +9,7 @@ package com.loto.mybatis.pojo;
  * Function：
  */
 
+@Data
 public class MappedStatement {
 	/**
 	 * id标识
@@ -27,36 +30,4 @@ public class MappedStatement {
 	 * sql语句
 	 */
 	private String sql;
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
-	public String getResultType() {
-		return resultType;
-	}
-
-	public void setResultType(String resultType) {
-		this.resultType = resultType;
-	}
-
-	public String getParamterType() {
-		return paramterType;
-	}
-
-	public void setParamterType(String paramterType) {
-		this.paramterType = paramterType;
-	}
-
-	public String getSql() {
-		return sql;
-	}
-
-	public void setSql(String sql) {
-		this.sql = sql;
-	}
 }
