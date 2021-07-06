@@ -10,9 +10,9 @@
     </parent>
 
     <groupId>com.loto.logicallydelete</groupId>
-    <artifactId>logicallydelete</artifactId>
+    <artifactId>mybatisplus7-logicallydelete</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>logicallydelete</name>
+    <name>mybatisplus7-logicallydelete</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>

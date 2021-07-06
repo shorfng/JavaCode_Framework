@@ -10,9 +10,9 @@
     </parent>
 
     <groupId>com.loto.generator</groupId>
-    <artifactId>generator</artifactId>
+    <artifactId>mybatisplus8-generator</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>generator</name>
+    <name>mybatisplus8-generator</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
