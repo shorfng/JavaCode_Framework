@@ -23,6 +23,7 @@
         <module>mybatis3-quickStarter-xml</module>
         <module>mybatis4-quickStarter-annotation</module>
         <module>mybatis5-cache</module>
+        <module>mybatis5-cache-redis</module>
         <module>mybatis6-plugin</module>
         <module>mybatis7-tkmapper</module>
 
