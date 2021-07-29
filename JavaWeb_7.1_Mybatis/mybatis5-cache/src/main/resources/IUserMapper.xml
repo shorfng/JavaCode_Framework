@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.loto.mybatis.mapper.IUserMapper">
+    <!-- 开启⼆级缓存 -->
+    <cache>
+    </cache>
+
+    <!-- userCache：⽤来设置本次查询是否禁⽤⼆级缓存，默认为true -->
+    <!-- flushCache：默认情况下为true，即刷新缓存，如果改成false则不会刷新，使⽤缓存时如果⼿动修改数据库表中的查询数据会出现脏读（在mapper的同⼀个namespace中，如果有其它insert、update, delete操作数据后需要刷新缓存，如果不执⾏刷新缓存会出现脏读） -->
+    <select id="selectUserByUserId" useCache="false" flushCache="true" resultType="com.loto.mybatis.pojo.User" parameterType="int">
+        select * from user where id = #{id}
+    </select>
+</mapper>

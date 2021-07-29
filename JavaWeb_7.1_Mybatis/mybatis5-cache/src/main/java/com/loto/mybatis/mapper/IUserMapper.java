@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.CacheNamespace;
 import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.cache.impl.PerpetualCache;
 
 /**
  * <p>Author：蓝田_Loto</p>
@@ -14,7 +15,8 @@ import org.apache.ibatis.annotations.Update;
  */
 
 // 开启二级缓存
-@CacheNamespace
+//@CacheNamespace
+@CacheNamespace(implementation = PerpetualCache.class)
 public interface IUserMapper {
     /**
      * 根据 id 更新用户
@@ -34,5 +36,4 @@ public interface IUserMapper {
     @Options(useCache = true)
     @Select({"select * from user where id = #{id}"})
     public User findUserById(Integer id);
-
 }
