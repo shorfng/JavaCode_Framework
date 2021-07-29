@@ -11,18 +11,18 @@ import java.io.InputStream;
  * <p>Author：蓝田_Loto</p>
  * <p>Date：2021-03-12 11:19</p>
  * <p>PageName：SqlSessionFactoryBuilder.java</p>
- * Function：
+ * Function：解析配置文件
  */
 
 public class SqlSessionFactoryBuilder {
 	public SqlSessionFactory build(InputStream in) throws DocumentException, PropertyVetoException {
-		// 第一：使用dom4j解析配置文件，将解析出来的内容封装到Configuration中
+		// 使用 dom4j 解析配置文件，将解析出来的内容封装到 Configuration 中
 		XMLConfigBuilder xmlConfigBuilder = new XMLConfigBuilder();
 		Configuration configuration = xmlConfigBuilder.parseConfig(in);
 
-		// 第二：创建sqlSessionFactory对象：工厂类：生产sqlSession:会话对象
+		// 创建 sqlSessionFactory 对象，该对象是一个工厂类
+        // 主要作用：生产 sqlSession（会话对象），即获取 sqlSession 接口的实现类实例对象（工厂模式）
 		DefaultSqlSessionFactory defaultSqlSessionFactory = new DefaultSqlSessionFactory(configuration);
-
 		return defaultSqlSessionFactory;
 	}
 }

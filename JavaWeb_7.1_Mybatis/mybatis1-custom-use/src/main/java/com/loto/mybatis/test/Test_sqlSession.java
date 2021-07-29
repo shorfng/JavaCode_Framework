@@ -1,6 +1,5 @@
 package com.loto.mybatis.test;
 
-import com.loto.mybatis.dao.IUserDao;
 import com.loto.mybatis.io.Resources;
 import com.loto.mybatis.pojo.User;
 import com.loto.mybatis.sqlsession.SqlSession;
@@ -12,13 +11,15 @@ import java.io.InputStream;
 import java.util.List;
 
 /**
- * <p>Author：蓝田_Loto</p>
- * <p>Date：2021-03-12 14:50</p>
- * <p>PageName：Test_MybatisCustom.java</p>
- * Function：
+ * Author：蓝田_Loto<p>
+ * Date：2021-03-12 14:50<p>
+ * PageName：Test_sqlSession<p>
+ * Function：<p>
+ * 缺点1，存在重复的代码：创建 sqlsession、调用 sqlsession 方法、关闭 sqlsession<p>
+ * 缺点2，存在硬编码：调用 sqlsession 的方法时，参数 statement 的 id 硬编码
  */
 
-public class Test_MybatisCustom {
+public class Test_sqlSession {
 	/**
 	 * 查询所有
 	 */
@@ -53,19 +54,4 @@ public class Test_MybatisCustom {
 		System.out.println(user2);
 	}
 
-	/**
-	 * 通过 Dao 执行方法
-	 */
-	@Test
-	public void test_getMapper() throws Exception {
-		InputStream resourceAsSteam = Resources.getResourceAsSteam("sqlMapConfig.xml");
-		SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(resourceAsSteam);
-		SqlSession sqlSession = sqlSessionFactory.openSession();
-
-		IUserDao userDao = sqlSession.getMapper(IUserDao.class);
-		List<User> all = userDao.findAll();
-		for (User user1 : all) {
-			System.out.println(user1);
-		}
-	}
 }

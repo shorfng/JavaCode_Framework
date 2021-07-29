@@ -14,7 +14,7 @@ import java.util.List;
  * <p>Author：蓝田_Loto</p>
  * <p>Date：2021-03-12 11:23</p>
  * <p>PageName：XMLMapperBuilder.java</p>
- * Function：
+ * Function：解析 mapper.xml 中的 sql 语句和参数
  */
 
 public class XMLMapperBuilder {
@@ -39,7 +39,7 @@ public class XMLMapperBuilder {
 			MappedStatement mappedStatement = new MappedStatement();
 			mappedStatement.setId(id);
 			mappedStatement.setResultType(resultType);
-			mappedStatement.setParamterType(parameterType);
+			mappedStatement.setParameterType(parameterType);
 			mappedStatement.setSql(sqlText);
 			String key = namespace + "." + id;
 			configuration.getMappedStatementMap().put(key, mappedStatement);

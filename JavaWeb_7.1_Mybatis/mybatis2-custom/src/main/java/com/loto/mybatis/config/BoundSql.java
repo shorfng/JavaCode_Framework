@@ -1,6 +1,7 @@
 package com.loto.mybatis.config;
 
 import com.loto.mybatis.utils.ParameterMapping;
+import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.List;
  * Function：
  */
 
+@Data
 public class BoundSql {
 	/**
 	 * 解析过后的sql
@@ -24,21 +26,4 @@ public class BoundSql {
 		this.sqlText = sqlText;
 		this.parameterMappingList = parameterMappingList;
 	}
-
-	public String getSqlText() {
-		return sqlText;
-	}
-
-	public void setSqlText(String sqlText) {
-		this.sqlText = sqlText;
-	}
-
-	public List<ParameterMapping> getParameterMappingList() {
-		return parameterMappingList;
-	}
-
-	public void setParameterMappingList(List<ParameterMapping> parameterMappingList) {
-		this.parameterMappingList = parameterMappingList;
-	}
-
 }

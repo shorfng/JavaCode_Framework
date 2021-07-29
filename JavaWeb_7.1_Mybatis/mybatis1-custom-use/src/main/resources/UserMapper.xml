@@ -1,11 +1,12 @@
+<!-- sql的唯一标识 statementId：namespace.id-->
 <mapper namespace="com.loto.mybatis.dao.IUserDao">
-    <!-- sql的唯一标识 statementId：namespace.id-->
-
-    <select id="findByCondition" resultType="com.loto.mybatis.pojo.User" parameterType="com.loto.mybatis.pojo.User">
-        select * from user where id = #{id} and username = #{username}
-    </select>
-
+    <!-- 查询所有 -->
     <select id="findAll" resultType="com.loto.mybatis.pojo.User">
         select * from user
+    </select>
+
+    <!-- 根据条件查询 -->
+    <select id="findByCondition" resultType="com.loto.mybatis.pojo.User" parameterType="com.loto.mybatis.pojo.User">
+        select * from user where id = #{id} and username = #{username}
     </select>
 </mapper>

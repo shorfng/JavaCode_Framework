@@ -17,5 +17,4 @@ public interface IUserDao {
 
 	//根据条件进行用户查询
 	public User findByCondition(User user) throws Exception;
-
 }

@@ -2,12 +2,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <!-- 父工程信息 -->
     <parent>
         <artifactId>JavaWeb_7.1_Mybatis</artifactId>
         <groupId>com.loto</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
+    <!-- 子工程信息 -->
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.loto.mybatis</groupId>
     <artifactId>mybatis2-custom</artifactId>
@@ -55,7 +57,7 @@
             <version>1.1.6</version>
         </dependency>
 
-        <!--简化bean代码的⼯具包-->
+        <!-- lombok 简化bean代码的⼯具包 -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>

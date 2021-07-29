@@ -3,10 +3,10 @@ package com.loto.mybatis.pojo;
 import lombok.Data;
 
 /**
- * <p>Author：蓝田_Loto</p>
- * <p>Date：2021-03-12 11:07</p>
- * <p>PageName：MappedStatement.java</p>
- * Function：
+ * Author：蓝田_Loto<p>
+ * Date：2021-03-12 11:07<p>
+ * PageName：MappedStatement.java<p>
+ * Function：存放 Mapper.xml 解析出来的内容
  */
 
 @Data
@@ -24,7 +24,7 @@ public class MappedStatement {
 	/**
 	 * 参数值类型
 	 */
-	private String paramterType;
+	private String parameterType;
 
 	/**
 	 * sql语句
