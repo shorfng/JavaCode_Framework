@@ -24,7 +24,7 @@ public class Test_Delete {
 		SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(resourceAsStream);
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 
-		sqlSession.delete("com.loto.dao.IUserMapper.deleteUser",3);
+		sqlSession.delete("com.loto.mapper.IUserMapper.deleteUser",3);
 		sqlSession.commit();
 
 		sqlSession.close();

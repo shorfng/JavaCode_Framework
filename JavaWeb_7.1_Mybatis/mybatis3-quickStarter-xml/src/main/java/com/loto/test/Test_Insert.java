@@ -31,7 +31,7 @@ public class Test_Insert {
 
 		User user = new User();
 		user.setUsername("Jan");
-		sqlSession.insert("com.loto.dao.IUserMapper.saveUser", user);
+		sqlSession.insert("com.loto.mapper.IUserMapper.saveUser", user);
 
 		sqlSession.close();
 	}
@@ -43,7 +43,7 @@ public class Test_Insert {
 	public void test_Insert_Mapper() throws IOException {
 		InputStream resourceAsStream = Resources.getResourceAsStream("sqlMapConfig.xml");
 		SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(resourceAsStream);
-		//事务自动提交
+		// 事务自动提交
 		SqlSession sqlSession = sqlSessionFactory.openSession(true);
 
 		User user = new User();
@@ -54,5 +54,4 @@ public class Test_Insert {
 
 		sqlSession.close();
 	}
-
 }

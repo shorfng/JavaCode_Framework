@@ -40,7 +40,7 @@ public class Test_Select {
 
 		// 4、执行sql语句（使用 sqlSession 调用方法）
 		// 查询单个：selectOne  查询所有selectList  添加：insert  修改：update  删除：delete
-		List<User> users = sqlSession.selectList("com.loto.dao.IUserMapper.findAll");
+		List<User> users = sqlSession.selectList("com.loto.mapper.IUserMapper.findAll");
 		for (User user : users) {
 			System.out.println(user);
 		}

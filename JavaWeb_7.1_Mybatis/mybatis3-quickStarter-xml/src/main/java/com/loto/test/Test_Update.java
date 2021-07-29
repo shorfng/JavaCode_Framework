@@ -29,7 +29,7 @@ public class Test_Update {
 		User user = new User();
 		user.setId(3);
 		user.setUsername("loto");
-		sqlSession.update("com.loto.dao.IUserMapper.updateUser", user);
+		sqlSession.update("com.loto.mapper.IUserMapper.updateUser", user);
 		sqlSession.commit();
 
 		sqlSession.close();
