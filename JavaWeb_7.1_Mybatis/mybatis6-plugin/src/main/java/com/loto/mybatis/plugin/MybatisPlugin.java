@@ -19,16 +19,20 @@ import java.util.Properties;
 
 /**
  * - @Signature 可以定义多个 @Signature 对多个地方拦截<p>
- * - type 指拦截哪个接口<p>
- * - method 被拦截的接口中的方法名<p>
- * - args 拦截方法的入参（顺序写入，如果方法重载，可通过方法名和入参来确定唯一）
+ * - type：指拦截哪个接口<p>
+ * - method：被拦截的接口中的方法名<p>
+ * - args：拦截方法的入参（顺序写入，如果方法重载，可通过方法名和入参来确定唯一）
  */
 @Intercepts({
-		@Signature(type = StatementHandler.class, method = "prepare", args = {Connection.class, Integer.class})
+		@Signature(
+		        type = StatementHandler.class,
+                method = "prepare",
+                args = {Connection.class, Integer.class}
+        )
 })
 public class MybatisPlugin implements Interceptor {
 	/**
-	 * 获取配置文件的参数
+	 * 获取配置文件的参数，传递插件所需参数
 	 */
 	@Override
 	public void setProperties(Properties properties) {
@@ -36,7 +40,7 @@ public class MybatisPlugin implements Interceptor {
 	}
 
 	/**
-	 * 把当前的拦截器生成代理存到拦截器链中
+	 * 把当前的要拦截的对象 target 生成的代理对象 wrap 存到拦截器链中
 	 */
 	@Override
 	public Object plugin(Object target) {
@@ -51,7 +55,7 @@ public class MybatisPlugin implements Interceptor {
 	@Override
 	public Object intercept(Invocation invocation) throws Throwable {
 		System.out.println("执行 intercept 方法......");
-		//原方法执行
+		// 原方法执行
 		return invocation.proceed();
 	}
 }
