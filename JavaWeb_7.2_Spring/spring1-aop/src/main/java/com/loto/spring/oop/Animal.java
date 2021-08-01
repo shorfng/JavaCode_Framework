@@ -8,23 +8,35 @@ package com.loto.spring.oop;
  */
 
 public class Animal {
-	/**
-	 * 高度
-	 */
-	private String height;
+    /**
+     * 高度
+     */
+    private String height;
 
-	/**
-	 * 体重
-	 */
-	private float weight;
+    /**
+     * 体重
+     */
+    private float weight;
 
-	public void eat() {
-		// 业务逻辑代码
-		System.out.println("I can eat...");
-	}
+    public void eat() {
+        long startTime = System.currentTimeMillis();
 
-	public void run() {
-		// 业务逻辑代码
-		System.out.println("I can run...");
-	}
+        // 业务逻辑代码
+        System.out.println("I can eat...");
+
+        long endTime = System.currentTimeMillis();
+
+        System.out.println("执行时间" + (endTime - startTime) / 1000f + "s");
+    }
+
+    public void run() {
+        long startTime = System.currentTimeMillis();
+
+        // 业务逻辑代码
+        System.out.println("I can run...");
+
+        long endTime = System.currentTimeMillis();
+
+        System.out.println("执行时间" + (endTime - startTime) / 1000f + "s");
+    }
 }
