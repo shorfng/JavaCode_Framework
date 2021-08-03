@@ -4,10 +4,6 @@ import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 
 public class LogUtils {
-    public void pt1() {
-
-    }
-
     /**
      * 业务逻辑 开始之前 执行
      */
