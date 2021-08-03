@@ -28,4 +28,6 @@
 
     <!-- 开启 aop 注解驱动 -->
     <aop:aspectj-autoproxy/>
+    <!-- 强制使用 cglib 动态代理-->
+    <!--<aop:aspectj-autoproxy proxy-target-class="true"/>-->
 </beans>
