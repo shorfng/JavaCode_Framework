@@ -11,7 +11,13 @@
 
     <!-- 子工程 -->
     <modules>
-        <module>spring1-aop</module>
+        <module>spring1-custom</module>
+        <module>spring2-ioc-xml</module>
+        <module>spring3-ioc-xml-anno</module>
+        <module>spring4-ioc-anno</module>
+        <module>spring5-aop-xml</module>
+        <module>spring6-aop-xml-anno</module>
+        <module>spring7-aop-anno</module>
     </modules>
 
     <!-- 解决Language Level版本问题 -->

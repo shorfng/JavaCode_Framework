@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop
+        https://www.springframework.org/schema/aop/spring-aop.xsd
+">
+
+    <!-- ioc 开启注解扫描，base-package 指定扫描的包路径 -->
+    <context:component-scan base-package="com.loto.aop"/>
+
+    <!-- 引入外部资源文件 -->
+    <context:property-placeholder location="classpath:jdbc.properties"/>
+
+    <!-- 第三方jar中的bean定义在xml中 -->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+    </bean>
+
+    <!-- 进行aop相关的xml配置，配置aop的过程其实就是把aop相关术语落地 -->
+    <!-- 横切逻辑bean -->
+    <bean id="logUtils" class="com.loto.aop.utils.LogUtils"/>
+    <bean id="transferService" class="com.loto.aop.service.impl.TransferServiceImpl"/>
+
+    <!-- 使用 config 标签表明开始 aop 配置，在内部配置切面 aspect -->
+    <aop:config>
+        <aop:aspect id="logAspect" ref="logUtils">
+            <!-- 切入点锁定感兴趣的方法，使用 aspectj 语法表达式 -->
+            <!--<aop:pointcut id="pt1" expression="execution(public void com.loto.aop.service.impl.TransferServiceImpl.transfer(java.lang.String, java.lang.String, int))"/>-->
+            <aop:pointcut id="pt1" expression="execution(* com.loto.aop.service.impl.TransferServiceImpl.*(..))"/>
+            <!--<aop:pointcut id="pt1" expression="execution(* *..*.*(..))"/>-->
+
+            <!-- 1、前置通知/前置增强 -->
+            <!-- method：⽤于指定前置通知的⽅法名称 -->
+            <!-- pointcut：⽤于指定切⼊点表达式 -->
+            <!-- pointcut-ref：⽤于指定切⼊点表达式的引⽤（方位信息，关联切入点） -->
+            <aop:before method="beforeMethod" pointcut-ref="pt1"/>
+
+            <!-- 2、后置通知/返回通知/正常执行通知 -->
+            <aop:after-returning method="successMethod" returning="retVal" pointcut-ref="pt1"/>
+
+            <!-- 3、异常通知 -->
+            <aop:after-throwing method="exceptionMethod" pointcut-ref="pt1"/>
+
+            <!-- 4、最终通知，无论如何都执行-->
+            <aop:after method="afterMethod" pointcut-ref="pt1"/>
+
+            <!-- 5、环绕通知 -->
+            <aop:around method="aroundMethod" pointcut-ref="pt1"/>
+        </aop:aspect>
+    </aop:config>
+</beans>
