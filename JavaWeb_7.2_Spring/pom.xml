@@ -18,6 +18,9 @@
         <module>spring5-aop-xml</module>
         <module>spring6-aop-xml-anno</module>
         <module>spring7-aop-anno</module>
+        <module>spring8-tx-xml</module>
+        <module>spring9-tx-xml-anno</module>
+        <module>spring10-tx-anno</module>
     </modules>
 
     <!-- 解决Language Level版本问题 -->

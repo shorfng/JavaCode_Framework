@@ -108,3 +108,6 @@ Temporary Items
 /JavaWeb_7.2_Spring/spring5-aop-xml/target/
 /JavaWeb_7.2_Spring/spring6-aop-xml-anno/target/
 /JavaWeb_7.2_Spring/spring7-aop-anno/target/
+/JavaWeb_7.2_Spring/spring8-tx-xml/target/
+/JavaWeb_7.2_Spring/spring9-tx-xml-anno/target/
+/JavaWeb_7.2_Spring/spring10-tx-anno/target/
