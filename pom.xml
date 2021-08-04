@@ -21,6 +21,7 @@
     <modules>
         <module>JavaWeb_7.1_Mybatis</module>
         <module>JavaWeb_7.2_Spring</module>
+        <module>JavaWeb_7.3_SpringMVC</module>
     </modules>
 
 </project>

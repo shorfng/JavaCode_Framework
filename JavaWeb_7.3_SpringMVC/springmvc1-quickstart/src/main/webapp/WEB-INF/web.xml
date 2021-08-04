@@ -1,0 +1,28 @@
+<!DOCTYPE web-app PUBLIC
+        "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+        "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+    <display-name>Archetype Created Web Application</display-name>
+
+    <servlet>
+        <!-- 配置 DispatcherServlet 前端控制器 -->
+        <servlet-name>springmvc</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+
+        <!-- 指定配置文件 springmvc.xml 路径 -->
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:springmvc.xml</param-value>
+        </init-param>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>springmvc</servlet-name>
+        <!-- 拦截匹配规则的url请求，进入springmvc框架处理 -->
+        <!-- 方式一：带后缀  比如*.action  *.do *.aaa -->
+        <!-- 方式二：/      不会拦截 .jsp，但是会拦截.html等静态资源（静态资源：除了servlet和jsp之外的js、css、png等）-->
+        <!-- 方式三：/*     拦截所有，包括.jsp -->
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+</web-app>
