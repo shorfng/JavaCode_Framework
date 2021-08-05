@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc
+        https://www.springframework.org/schema/mvc/spring-mvc.xsd
+">
+
+    <!-- 开启 controller 扫描 -->
+    <context:component-scan base-package="com.loto.springmvc.controller"/>
+
+    <!-- 视图解析器 -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+    <!-- 处理器映射器 和 处理器适配器（自动注册最合适的）-->
+    <mvc:annotation-driven conversion-service="conversionServiceBean"/>
+
+    <!-- 注册自定义类型转换器 -->
+    <bean id="conversionServiceBean" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+        <property name="converters">
+            <set>
+                <bean class="com.loto.springmvc.converter.DateConverter"/>
+            </set>
+        </property>
+    </bean>
+
+    <!-- 静态资源配置方式2：SpringMVC 框架自己处理静态资源 -->
+    <!-- mapping：约定的静态资源的url规则 -->
+    <!-- location：指定的静态资源的存放位置 -->
+    <!-- http://localhost:8080/resources/test.html -->
+    <mvc:resources location="classpath:/"  mapping="/resources/**"/>
+    <!-- http://localhost:8080/webapp/test.html -->
+    <mvc:resources location="classpath:/"  mapping="/webapp/**"/>
+    <mvc:resources location="/WEB-INF/js/" mapping="/js/**"/>
+
+
+
+</beans>

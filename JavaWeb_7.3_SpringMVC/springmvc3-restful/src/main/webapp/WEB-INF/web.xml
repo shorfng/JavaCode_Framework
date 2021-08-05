@@ -1,0 +1,56 @@
+<!DOCTYPE web-app PUBLIC
+        "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+        "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+    <display-name>Archetype Created Web Application</display-name>
+
+    <!-- springmvc提供的针对 post 请求的编码过滤器 -->
+    <filter>
+        <filter-name>encoding</filter-name>
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+    </filter>
+
+    <!-- 配置 springmvc 请求方式转换过滤器 -->
+    <!-- 会检查请求参数中是否有_method参数（html页面的控件 name="_method" ），如果有就按照指定的请求方式进行转换 -->
+    <!-- 将特定的 post 请求转换为 put 和 delete 请求-->
+    <filter>
+        <filter-name>hiddenHttpMethodFilter</filter-name>
+        <filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>hiddenHttpMethodFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>encoding</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <servlet>
+        <!-- 配置 DispatcherServlet 前端控制器 -->
+        <servlet-name>springmvc</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+
+        <!-- 指定配置文件 springmvc.xml 路径 -->
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:springmvc.xml</param-value>
+        </init-param>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>springmvc</servlet-name>
+        <!-- 拦截匹配规则的url请求，进入springmvc框架处理 -->
+        <!-- 方式一：带后缀  比如*.action  *.do *.aaa -->
+        <!-- 方式二：/      不会拦截 .jsp，但是会拦截.html等静态资源（静态资源：除了servlet和jsp之外的js、css、png等）-->
+        <!-- 方式三：/*     拦截所有，包括.jsp -->
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+</web-app>
