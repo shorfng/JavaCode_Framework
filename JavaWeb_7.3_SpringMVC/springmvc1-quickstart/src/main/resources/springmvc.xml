@@ -23,4 +23,24 @@
 
     <!-- 处理器映射器 和 处理器适配器（自动注册最合适的）-->
     <mvc:annotation-driven/>
+
+    <!--静态资源配置方式1-->
+    <!-- 原理：
+        - 添加该标签配置之后，会在 SpringMVC 上下文中定义一个 DefaultServletHttpRequestHandler 对象
+        - 这个对象如同一个检查人员，对进入 DispatcherServlet的url 请求进行过滤筛查
+        - 如果发现是一个静态资源请求，会把请求转由 web 应用服务器（tomcat）默认的 DefaultServlet 来处理
+        - 如果不是静态资源请求，那么继续由 SpringMVC 框架处理
+    -->
+    <!-- 此方案只能将 静态资源 放在 webapp 根目录下，其他位置访问不到-->
+    <!--<mvc:default-servlet-handler/>-->
+
+    <!-- 静态资源配置方式2：SpringMVC 框架自己处理静态资源 -->
+    <!-- mapping：约定的静态资源的url规则 -->
+    <!-- location：指定的静态资源的存放位置 -->
+    <!-- http://localhost:8080/resources/test.html -->
+    <mvc:resources location="classpath:/"  mapping="/resources/**"/>
+    <!-- http://localhost:8080/webapp/test.html -->
+    <mvc:resources location="classpath:/"  mapping="/webapp/**"/>
+    <mvc:resources location="/WEB-INF/js/" mapping="/js/**"/>
+
 </beans>
