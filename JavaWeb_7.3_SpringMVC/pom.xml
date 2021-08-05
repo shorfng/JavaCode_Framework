@@ -15,6 +15,7 @@
     <!-- 子项目 -->
     <modules>
         <module>springmvc1-quickstart</module>
+        <module>springmvc2-parambinding</module>
     </modules>
 
     <properties>
