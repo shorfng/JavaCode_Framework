@@ -17,6 +17,11 @@
         <module>springmvc1-quickstart</module>
         <module>springmvc2-parambinding</module>
         <module>springmvc3-restful</module>
+        <module>springmvc4-json</module>
+        <module>springmvc5-interceptor</module>
+        <module>springmvc6-exceptionhandler</module>
+        <module>springmvc7-multipart</module>
+        <module>springmvc8-redirect</module>
     </modules>
 
     <properties>
