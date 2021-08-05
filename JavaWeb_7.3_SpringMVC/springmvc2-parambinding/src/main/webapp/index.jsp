@@ -2,29 +2,6 @@
 <html>
 <head>
     <title>SpringMVC 测试页</title>
-
-    <script type="text/javascript" src="/js/jquery.min.js"></script>
-
-    <script>
-        $(function () {
-
-            $("#ajaxBtn").bind("click", function () {
-                // 发送ajax请求
-                $.ajax({
-                    url: '/demo/handle07',
-                    type: 'POST',
-                    data: '{"id":"1","name":"李四"}',
-                    contentType: 'application/json;charset=utf-8',
-                    dataType: 'json',
-                    success: function (data) {
-                        alert(data.name);
-                    }
-                })
-
-            })
-        })
-    </script>
-
     <style>
         div {
             padding: 10px 10px 0 10px;

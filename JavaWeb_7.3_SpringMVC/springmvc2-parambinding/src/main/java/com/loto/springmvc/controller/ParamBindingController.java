@@ -104,6 +104,4 @@ public class ParamBindingController {
         modelAndView.setViewName("success");
         return modelAndView;
     }
-
-
 }
