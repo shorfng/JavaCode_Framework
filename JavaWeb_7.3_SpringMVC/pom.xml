@@ -23,6 +23,7 @@
         <module>springmvc7-multipart</module>
         <module>springmvc8-redirect</module>
         <module>springmvc9-custom</module>
+        <module>ssm</module>
     </modules>
 
     <properties>
