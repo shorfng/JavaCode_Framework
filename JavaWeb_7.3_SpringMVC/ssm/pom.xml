@@ -142,8 +142,6 @@
     </dependencies>
 
     <build>
-
-
         <plugins>
             <!--tomcat插件-->
             <plugin>
