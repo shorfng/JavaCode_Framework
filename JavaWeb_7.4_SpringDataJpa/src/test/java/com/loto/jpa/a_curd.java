@@ -97,38 +97,4 @@ public class a_curd {
     public void testDelete() {
         resumeDao.deleteById(6L);
     }
-
-    /**
-     * select resume0_.id as id1_0_, resume0_.address as address2_0_, resume0_.name as name3_0_, resume0_.phone as phone4_0_ from tb_resume resume0_ order by resume0_.id desc
-     */
-    @Test
-    public void testSort() {
-        Sort sort = new Sort(Sort.Direction.DESC, "id");
-
-        List<Resume> list = resumeDao.findAll(sort);
-        for (int i = 0; i < list.size(); i++) {
-            Resume resume = list.get(i);
-            System.out.println(resume);
-        }
-    }
-
-    /**
-     * select resume0_.id as id1_0_, resume0_.address as address2_0_, resume0_.name as name3_0_, resume0_.phone as phone4_0_ from tb_resume resume0_ limit ?  <p>
-     * select count(resume0_.id) as col_0_0_ from tb_resume resume0_ Page 1 of 2 containing com.loto.jpa.pojo.Resume instances  <p>
-     * 第一个参数：当前查询的页数，从0开始 <p>
-     * 第二个参数：每页查询的数量
-     */
-    @Test
-    public void testPage() {
-        Pageable pageable = PageRequest.of(0, 2);
-        // Pageable pageable = new PageRequest(0,2);
-
-        Page<Resume> all = resumeDao.findAll(pageable);
-        System.out.println(all);
-
-        //for (int i = 0; i < list.size(); i++) {
-        //    Resume resume = list.get(i);
-        //    System.out.println(resume);
-        //}
-    }
 }
