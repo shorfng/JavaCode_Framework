@@ -7,9 +7,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-// 生成当前类的实例对象，存到 ioc 容器中
+// 将当前注入属性值的 Person 类对象作为 Bean 组件放到 Spring IOC 容器中，只有这样才能被 @ConfigurationProperties 注解进行赋值
 @Component
-// 实现批量注入（set方法）
+// 将配置文件中以 person 开头的属性值通过 setXX() 方法注入到实体类对应属性中，实现批量注入
 @ConfigurationProperties(prefix = "person")
 public class Person {
     private int id;           // id
