@@ -64,11 +64,19 @@
             <scope>test</scope>
         </dependency>
 
-        <!--        <dependency>-->
-        <!--            <groupId>com.github.drtrang</groupId>-->
-        <!--            <artifactId>druid-spring-boot2-starter</artifactId>-->
-        <!--            <version>1.1.10</version>-->
-        <!--        </dependency>-->
+        <!-- 属性值注入 -->
+        <dependency>
+            <groupId>com.github.drtrang</groupId>
+            <artifactId>druid-spring-boot2-starter</artifactId>
+            <version>1.1.10</version>
+        </dependency>
+
+        <!-- 简化代码的⼯具包 -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.18</version>
+        </dependency>
     </dependencies>
 
     <build>

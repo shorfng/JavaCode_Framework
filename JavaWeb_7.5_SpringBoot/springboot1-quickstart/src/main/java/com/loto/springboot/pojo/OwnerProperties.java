@@ -1,9 +1,11 @@
 package com.loto.springboot.pojo;
 
-
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
+/**
+ * 松散绑定
+ */
 @Component
 @ConfigurationProperties("acme.my-person.person")
 public class OwnerProperties {
