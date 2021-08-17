@@ -7,6 +7,8 @@ import com.loto.springboot.pojo.OwnerProperties;
 import com.loto.springboot.pojo.Person;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -76,5 +78,23 @@ class Springboot1QuickstartApplicationTests {
     @Test
     public void test_ownerProperties(){
         System.out.println(ownerProperties);
+    }
+
+    /**
+     * 测试日志输出
+     */
+    Logger logger = LoggerFactory.getLogger(this.getClass());
+
+    /**
+     * SLF4J 日志级别（从小到大）：trace < debug < info < warn < error 只会输出比当前级别更高的级别日志
+     */
+    @Test
+    public void testLog() {
+        logger.trace("trace日志....");
+        logger.debug("debug日志....");
+        // springboot 中，日志的默认级别是 info级别/root级别
+        logger.info("info日志....");
+        logger.warn("warn日志....");
+        logger.error("error日志....");
     }
 }
