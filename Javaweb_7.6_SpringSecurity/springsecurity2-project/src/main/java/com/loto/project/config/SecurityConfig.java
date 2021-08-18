@@ -2,11 +2,16 @@ package com.loto.project.config;
 
 import com.loto.project.service.impl.MyUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
+
+import javax.sql.DataSource;
 
 /**
  * Author：蓝田_Loto
@@ -52,6 +57,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .usernameParameter("username")
                 .passwordParameter("password") // 自定义 input 的 name 值
                 .successForwardUrl("/")        // 登录成功之后跳转的路径
+                .and().rememberMe()            // 开启记住我功能
+                .tokenValiditySeconds(1209600) // token失效时间 默认2周
+                .rememberMeParameter("remember-me") // 自定义表单“记住我”按钮的 input 值
+                .tokenRepository(getPersistentTokenRepository()) // 持久化的 Token 生成
                 .and().authorizeRequests().antMatchers("/toLoginPage").permitAll() // 放行登录页面
                 .anyRequest().authenticated();
 
@@ -60,6 +69,26 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         // 加载同源域名下 iframe 页面
         http.headers().frameOptions().sameOrigin();
-
     }
+
+    @Autowired
+    DataSource dataSource;
+
+    /**
+     * 负责token与数据库之间的操作（持久化的 Token 生成）
+     */
+    @Bean
+    public PersistentTokenRepository getPersistentTokenRepository() {
+        JdbcTokenRepositoryImpl tokenRepository = new JdbcTokenRepositoryImpl();
+
+        // 设置数据源
+        tokenRepository.setDataSource(dataSource);
+
+        // 启动时帮助我们自动创建一张表
+        // 第一次启动项目设置true，第二次启动项目设置false或者注释掉
+        //tokenRepository.setCreateTableOnStartup(true);
+
+        return tokenRepository;
+    }
+
 }

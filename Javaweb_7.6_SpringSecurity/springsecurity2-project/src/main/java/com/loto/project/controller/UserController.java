@@ -3,10 +3,12 @@ package com.loto.project.controller;
 import com.loto.project.domain.User;
 import com.loto.project.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.RememberMeAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -112,6 +114,14 @@ public class UserController {
     @GetMapping("/{id}")
     @ResponseBody
     public User getById(@PathVariable Integer id) {
+        // 获取认证的信息
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        // 如果为 true，代表这个登录认证的信息来源于自动登录，会跳转到登录页面
+        if (RememberMeAuthenticationToken.class.isAssignableFrom(authentication.getClass())) {
+            throw new RememberMeAuthenticationException("认证来源于RememberMe");
+        }
+
         User user = userService.getById(id);
         return user;
     }
