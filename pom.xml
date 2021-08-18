@@ -23,6 +23,7 @@
         <module>JavaWeb_7.3_SpringMVC</module>
         <module>JavaWeb_7.4_SpringDataJpa</module>
         <module>JavaWeb_7.5_SpringBoot</module>
+        <module>Javaweb_7.6_SpringSecurity</module>
     </modules>
 
 </project>
