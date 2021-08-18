@@ -3,6 +3,10 @@ package com.loto.project.controller;
 import com.loto.project.domain.User;
 import com.loto.project.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -112,4 +116,35 @@ public class UserController {
         return user;
     }
 
+    /**
+     * 获取当前登录用户信息 - SecurityContextHolder
+     */
+    // http://localhost:8080/user/loginUser1
+    @GetMapping("/loginUser1")
+    @ResponseBody
+    public UserDetails getCurrentUser() {
+        UserDetails principal = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return principal;
+    }
+
+    /**
+     * 获取当前登录用户信息 - Authentication
+     */
+    // http://localhost:8080/user/loginUser2
+    @GetMapping("/loginUser2")
+    @ResponseBody
+    public UserDetails getCurrentUser1(Authentication authentication) {
+        UserDetails principal = (UserDetails) authentication.getPrincipal();
+        return principal;
+    }
+
+    /**
+     * 获取当前登录用户信息 - @AuthenticationPrincipal
+     */
+    // http://localhost:8080/user/loginUser3
+    @GetMapping("/loginUser3")
+    @ResponseBody
+    public UserDetails getCurrentUser2(@AuthenticationPrincipal UserDetails userDetails) {
+        return userDetails;
+    }
 }
