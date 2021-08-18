@@ -164,7 +164,8 @@ CREATE TABLE `t_user`
 -- ----------------------------
 -- Records of t_user
 -- ----------------------------
-INSERT INTO `t_user` VALUES (1, 'admin', '$2a$10$m8WqgTzr0TO.XG.aR91.jegJJmDnGSvWs69aMWPR.WNvCzemHpLum', 1);
+# admin 密码 123456
+INSERT INTO `t_user` VALUES (1, 'admin', '$2a$10$zvwPUB/FPnYzPV0yFXS5g.8mUmIoUM09v0rrd6TmTHr5RFHWzpzgq', 1);
 INSERT INTO `t_user` VALUES (2, 'zhaoyang', '$2a$10$m8WqgTzr0TO.XG.aR91.jegJJmDnGSvWs69aMWPR.WNvCzemHpLum', 1);
 INSERT INTO `t_user` VALUES (3, 'user1', '$2a$10$m8WqgTzr0TO.XG.aR91.jegJJmDnGSvWs69aMWPR.WNvCzemHpLum', 1);
 INSERT INTO `t_user` VALUES (4, 'user2', '$2a$10$m8WqgTzr0TO.XG.aR91.jegJJmDnGSvWs69aMWPR.WNvCzemHpLum', 1);
