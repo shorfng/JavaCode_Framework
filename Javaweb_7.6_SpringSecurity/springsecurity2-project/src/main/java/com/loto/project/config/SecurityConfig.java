@@ -13,6 +13,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import javax.sql.DataSource;
 
@@ -74,6 +75,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .failureHandler(myAuthenticationService)  // 自定义登录失败的处理
                 .and().logout().logoutUrl("/logout")      // 自定义退出登录 URL
                 .logoutSuccessHandler(myAuthenticationService) // 自定义退出登录的处理
+                // 开启 csrf 后，需要使得 logout 从 post 请求改为 get才能使用登出功能
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout","GET"))
                 .and().rememberMe()            // 开启记住我功能
                 .tokenValiditySeconds(1209600) // token失效时间 默认2周
                 .rememberMeParameter("remember-me") // 自定义表单“记住我”按钮的 input 值
@@ -81,8 +84,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and().authorizeRequests().antMatchers("/toLoginPage").permitAll() // 放行登录页面
                 .anyRequest().authenticated();
 
-        // 关闭 csrf 防护
-        http.csrf().disable();
+        // 关闭 csrf 防护（默认 spring security 开启 csrf）
+        //http.csrf().disable();
+
+        // 开启csrf防护（定义哪些路径不需要防护）
+        // http.csrf().ignoringAntMatchers("/logout");
+         http.csrf().ignoringAntMatchers();
 
         // 加载同源域名下 iframe 页面
         http.headers().frameOptions().sameOrigin();
