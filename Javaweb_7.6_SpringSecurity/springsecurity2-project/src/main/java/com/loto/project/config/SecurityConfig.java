@@ -1,5 +1,6 @@
 package com.loto.project.config;
 
+import com.loto.project.service.impl.MyAuthenticationService;
 import com.loto.project.service.impl.MyUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -24,6 +25,9 @@ import javax.sql.DataSource;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     MyUserDetailsService myUserDetailsService;
+
+    @Autowired
+    MyAuthenticationService myAuthenticationService;
 
     /**
      * 身份安全管理器
@@ -57,6 +61,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .usernameParameter("username")
                 .passwordParameter("password") // 自定义 input 的 name 值
                 .successForwardUrl("/")        // 登录成功之后跳转的路径
+                .successHandler(myAuthenticationService)  // 登录成功的处理
+                .failureHandler(myAuthenticationService)  // 登录失败的处理
                 .and().rememberMe()            // 开启记住我功能
                 .tokenValiditySeconds(1209600) // token失效时间 默认2周
                 .rememberMeParameter("remember-me") // 自定义表单“记住我”按钮的 input 值

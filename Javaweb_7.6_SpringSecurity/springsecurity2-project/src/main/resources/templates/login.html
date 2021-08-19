@@ -55,7 +55,7 @@
                     </div>
 
                     <div style="padding:30px;">
-                        <input type="submit" class="button button-block bg-main text-big input-big" value="登录">
+                        <input type="button" onclick="login()" class="button button-block bg-main text-big input-big" value="登录">
                     </div>
                 </div>
             </form>
@@ -63,4 +63,25 @@
     </div>
 </div>
 </body>
+
+<script>
+    <!-- 异步用户登录实现 -->
+    function login() {
+        $.ajax({
+            type: "POST",     // 请求的类型
+            dataType: "json", // 服务器返回数据的类型
+            url: "/login",
+            data: $("#formLogin").serialize(),
+            success: function (data) {
+                // 登录成功
+                if (data.code == 200) {
+                    window.location.href = "/";
+                } else {
+                    alert(data.message)
+                }
+            }
+        })
+    }
+</script>
+
 </html>
