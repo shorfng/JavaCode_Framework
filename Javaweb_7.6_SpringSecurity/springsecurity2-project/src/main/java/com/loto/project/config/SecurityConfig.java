@@ -14,6 +14,9 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import javax.sql.DataSource;
 
@@ -89,7 +92,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         // 开启csrf防护（定义哪些路径不需要防护）
         // http.csrf().ignoringAntMatchers("/logout");
-         http.csrf().ignoringAntMatchers();
+        http.csrf().ignoringAntMatchers();
 
         // 加载同源域名下 iframe 页面
         http.headers().frameOptions().sameOrigin();
@@ -101,6 +104,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .maxSessionsPreventsLogin(true)     // 如果达到最大会话数量，就阻止登录
                 .expiredUrl("/toLoginPage");        // session过期之后跳转的路径
 
+        // 开启跨域支持
+        http.cors().configurationSource(corsConfigurationSource());
     }
 
     @Autowired
@@ -121,5 +126,30 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         //tokenRepository.setCreateTableOnStartup(true);
 
         return tokenRepository;
+    }
+
+    /**
+     * 跨域配置信息源
+     */
+    public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration corsConfiguration = new CorsConfiguration();
+
+        // 允许跨域的站点
+        corsConfiguration.addAllowedOrigin("*");
+
+        // 允许跨域的http方法
+        corsConfiguration.addAllowedMethod("*");
+
+        // 允许跨域的请求头
+        corsConfiguration.addAllowedHeader("*");
+
+        // 允许带凭证
+        corsConfiguration.setAllowCredentials(true);
+
+        UrlBasedCorsConfigurationSource urlBasedCorsConfigurationSource = new UrlBasedCorsConfigurationSource();
+
+        // 对所有url都生效
+        urlBasedCorsConfigurationSource.registerCorsConfiguration("/**", corsConfiguration);
+        return urlBasedCorsConfigurationSource;
     }
 }
