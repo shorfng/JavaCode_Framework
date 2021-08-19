@@ -1,5 +1,6 @@
 package com.loto.project.config;
 
+import com.loto.project.filter.ValidateCodeFilter;
 import com.loto.project.service.impl.MyAuthenticationService;
 import com.loto.project.service.impl.MyUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 
@@ -29,6 +31,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     MyAuthenticationService myAuthenticationService;
 
+    @Autowired
+    ValidateCodeFilter validateCodeFilter;
+
     /**
      * 身份安全管理器
      */
@@ -42,6 +47,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      */
     @Override
     public void configure(WebSecurity web) throws Exception {
+        // /code/** 为图形验证码
         web.ignoring().antMatchers("/css/**", "/images/**", "/js/**", "/code/**");
     }
 
@@ -53,6 +59,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         // 开启 httpBasic 认证：http.httpBasic()
         // 所有请求都需要认证之后访问：and().authorizeRequests().anyRequest().authenticated()
         //http.httpBasic().and().authorizeRequests().anyRequest().authenticated();
+
+        // 将验证码过滤器 加到 用户名密码验证过滤器 的前面
+        http.addFilterBefore(validateCodeFilter, UsernamePasswordAuthenticationFilter.class);
 
         // 开启表单认证
         http.formLogin()
