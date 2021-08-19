@@ -86,6 +86,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         // 加载同源域名下 iframe 页面
         http.headers().frameOptions().sameOrigin();
+
+        // 自定义 session 管理（并发控制）
+        http.sessionManagement()
+                .invalidSessionUrl("/toLoginPage")  // session失效之后跳转的路径
+                .maximumSessions(1)                 // session最大会话数量（1 表示同一时间只能有一个用户可以登录，互踢）
+                .maxSessionsPreventsLogin(true)     // 如果达到最大会话数量，就阻止登录
+                .expiredUrl("/toLoginPage");        // session过期之后跳转的路径
+
     }
 
     @Autowired
