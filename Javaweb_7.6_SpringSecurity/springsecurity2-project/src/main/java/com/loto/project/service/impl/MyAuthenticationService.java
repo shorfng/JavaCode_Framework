@@ -9,6 +9,7 @@ import org.springframework.security.web.DefaultRedirectStrategy;
 import org.springframework.security.web.RedirectStrategy;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.ServletException;
@@ -26,7 +27,7 @@ import java.util.Map;
  */
 
 @Service
-public class MyAuthenticationService implements AuthenticationSuccessHandler, AuthenticationFailureHandler {
+public class MyAuthenticationService implements AuthenticationSuccessHandler, AuthenticationFailureHandler, LogoutSuccessHandler {
     RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
 
     @Autowired
@@ -67,5 +68,15 @@ public class MyAuthenticationService implements AuthenticationSuccessHandler, Au
 
         response.setContentType("application/json;charset=UTF-8");
         response.getWriter().write(objectMapper.writeValueAsString(result));
+    }
+
+    /**
+     * 退出登录后处理逻辑
+     */
+    @Override
+    public void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
+        System.out.println("退出登录之后继续处理...");
+
+        redirectStrategy.sendRedirect(request, response, "/toLoginPage");
     }
 }

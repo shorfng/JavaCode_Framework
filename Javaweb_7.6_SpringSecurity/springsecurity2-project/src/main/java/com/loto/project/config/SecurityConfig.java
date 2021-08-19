@@ -60,9 +60,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginProcessingUrl("/login") // 表单提交的路径
                 .usernameParameter("username")
                 .passwordParameter("password") // 自定义 input 的 name 值
-                .successForwardUrl("/")        // 登录成功之后跳转的路径
-                .successHandler(myAuthenticationService)  // 登录成功的处理
-                .failureHandler(myAuthenticationService)  // 登录失败的处理
+                .successForwardUrl("/")        // 自定义登录成功之后跳转的路径
+                .successHandler(myAuthenticationService)  // 自定义登录成功的处理
+                .failureHandler(myAuthenticationService)  // 自定义登录失败的处理
+                .and().logout().logoutUrl("/logout")      // 自定义退出登录 URL
+                .logoutSuccessHandler(myAuthenticationService) // 自定义退出登录的处理
                 .and().rememberMe()            // 开启记住我功能
                 .tokenValiditySeconds(1209600) // token失效时间 默认2周
                 .rememberMeParameter("remember-me") // 自定义表单“记住我”按钮的 input 值
@@ -96,5 +98,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         return tokenRepository;
     }
-
 }
