@@ -4,6 +4,7 @@ import com.loto.project.domain.User;
 import com.loto.project.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -45,6 +46,11 @@ public class MyUserDetailsService implements UserDetailsService {
         // 当表中有对应用户
         // 权限的集合
         Collection<GrantedAuthority> authorities = new ArrayList<>();
+        if ("admin".equalsIgnoreCase(user.getUsername())) {
+            authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+        } else {
+            authorities.add(new SimpleGrantedAuthority("ROLE_PRODUCT"));
+        }
 
         UserDetails userDetails = new org.springframework.security.core.userdetails.User(
                 username,

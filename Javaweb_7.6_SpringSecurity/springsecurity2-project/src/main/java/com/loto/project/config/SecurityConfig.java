@@ -1,6 +1,7 @@
 package com.loto.project.config;
 
 import com.loto.project.filter.ValidateCodeFilter;
+import com.loto.project.handle.MyAccessDeniedHandler;
 import com.loto.project.service.impl.MyAuthenticationService;
 import com.loto.project.service.impl.MyUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,6 +67,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         // 将验证码过滤器 加到 用户名密码验证过滤器 的前面
         http.addFilterBefore(validateCodeFilter, UsernamePasswordAuthenticationFilter.class);
+
+        // 方式 1：使用 spring security 内置权限表达式
+        // 设置 /user 开头的请求需要 ADMIN 权限
+        http.authorizeRequests().antMatchers("/user/**").hasRole("ADMIN");
+        // 设置 /product 开头的请求需要 ADMIN 或者 PRODUCT 权限 并且访问的IP是127.0.0.1
+        http.authorizeRequests().antMatchers("/product/**").access("hasAnyRole('ADMIN','PRODUCT') and hasIpAddress('127.0.0.1')");
 
         // 开启表单认证
         http.formLogin()
