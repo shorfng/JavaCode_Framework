@@ -39,6 +39,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     ValidateCodeFilter validateCodeFilter;
 
+    @Autowired
+    MyAccessDeniedHandler myAccessDeniedHandler;
+
     /**
      * 身份安全管理器
      */
@@ -73,6 +76,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/user/**").hasRole("ADMIN");
         // 设置 /product 开头的请求需要 ADMIN 或者 PRODUCT 权限 并且访问的IP是127.0.0.1
         http.authorizeRequests().antMatchers("/product/**").access("hasAnyRole('ADMIN','PRODUCT') and hasIpAddress('127.0.0.1')");
+
+        // 方式 2：基于 url 控制权限（设置权限不足的信息）
+        http.exceptionHandling().accessDeniedHandler(myAccessDeniedHandler);
 
         // 开启表单认证
         http.formLogin()
