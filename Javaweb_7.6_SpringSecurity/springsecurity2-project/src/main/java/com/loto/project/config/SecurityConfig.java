@@ -1,7 +1,9 @@
 package com.loto.project.config;
 
+import com.loto.project.domain.Permission;
 import com.loto.project.filter.ValidateCodeFilter;
 import com.loto.project.handle.MyAccessDeniedHandler;
+import com.loto.project.service.PermissionService;
 import com.loto.project.service.impl.MyAuthenticationService;
 import com.loto.project.service.impl.MyUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,7 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import javax.sql.DataSource;
+import java.util.List;
 
 /**
  * Author：蓝田_Loto
@@ -43,6 +46,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     MyAccessDeniedHandler myAccessDeniedHandler;
+
+    @Autowired
+    PermissionService permissionService;
 
     /**
      * 身份安全管理器
@@ -75,23 +81,31 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         // 方式 1：使用 spring security 内置权限表达式
         // 设置 /user 开头的请求需要 ADMIN 权限
-        http.authorizeRequests().antMatchers("/user/**").hasRole("ADMIN");
+        //http.authorizeRequests().antMatchers("/user/**").hasRole("ADMIN");
         // 设置 /product 开头的请求需要 ADMIN 或者 PRODUCT 权限 并且访问的IP是127.0.0.1
-        http.authorizeRequests().antMatchers("/product/**").access("hasAnyRole('ADMIN','PRODUCT') and hasIpAddress('127.0.0.1')");
+        //http.authorizeRequests().antMatchers("/product/**").access("hasAnyRole('ADMIN','PRODUCT') and hasIpAddress('127.0.0.1')");
 
         // 方式 2：基于 url 控制权限（设置权限不足的信息）
         http.exceptionHandling().accessDeniedHandler(myAccessDeniedHandler);
 
         // 使用自定义bean完成授权
         //（1）一级路径限制
-        http.authorizeRequests()
-                .antMatchers("/user/**")
-                .access("@myAuthorizationService.check(authentication,request)");
+        //http.authorizeRequests()
+        //        .antMatchers("/user/**")
+        //        .access("@myAuthorizationService.check(authentication,request)");
         //（2）二级路径限制
-        http.authorizeRequests()
-                .antMatchers("/user/{id}")
-                .access("@myAuthorizationService.check(authentication,request,#id)");
+        //http.authorizeRequests()
+        //        .antMatchers("/user/{id}")
+        //        .access("@myAuthorizationService.check(authentication,request,#id)");
 
+        // 查询数据库所有权限列表
+        List<Permission> list = permissionService.list();
+        for (Permission permission : list) {
+            // 添加请求权限
+            http.authorizeRequests()
+                    .antMatchers(permission.getPermissionUrl())
+                    .hasAuthority(permission.getPermissionTag());
+        }
 
         // 开启表单认证
         http.formLogin()

@@ -1,6 +1,8 @@
 package com.loto.project.service.impl;
 
+import com.loto.project.domain.Permission;
 import com.loto.project.domain.User;
+import com.loto.project.service.PermissionService;
 import com.loto.project.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * Author：蓝田_Loto
@@ -25,6 +28,9 @@ import java.util.Collection;
 public class MyUserDetailsService implements UserDetailsService {
     @Autowired
     UserService userService;
+
+    @Autowired
+    PermissionService permissionService;
 
     /**
      * 根据用户名查询用户
@@ -46,11 +52,18 @@ public class MyUserDetailsService implements UserDetailsService {
         // 当表中有对应用户
         // 权限的集合
         Collection<GrantedAuthority> authorities = new ArrayList<>();
-        if ("admin".equalsIgnoreCase(user.getUsername())) {
-            authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
-        } else {
-            authorities.add(new SimpleGrantedAuthority("ROLE_PRODUCT"));
+
+        // 基于数据库查询用户对应的权限
+        List<Permission> permissionList = permissionService.findByUserId(user.getId());
+        for (Permission permission : permissionList) {
+            authorities.add(new SimpleGrantedAuthority(permission.getPermissionTag()));
         }
+
+        //if ("admin".equalsIgnoreCase(user.getUsername())) {
+        //    authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+        //} else {
+        //    authorities.add(new SimpleGrantedAuthority("ROLE_PRODUCT"));
+        //}
 
         UserDetails userDetails = new org.springframework.security.core.userdetails.User(
                 username,

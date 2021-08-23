@@ -6,7 +6,9 @@ import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
-
+/**
+ *  动态查询数据库中用户对应的权限
+ */
 public interface PermissionMapper extends BaseMapper<Permission> {
     /**
      * 根据用户ID查询权限

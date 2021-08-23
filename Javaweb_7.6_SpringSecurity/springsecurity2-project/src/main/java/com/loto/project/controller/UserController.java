@@ -34,7 +34,7 @@ public class UserController {
      * @return
      */
     @RequestMapping("/findAll")
-    @PreAuthorize("hasRole('ADMIN')") // 需要ADMIN权限
+    //@PreAuthorize("hasRole('ADMIN')") // 需要ADMIN权限
     public String findAll(Model model) {
         List<User> userList = userService.list();
         model.addAttribute("userList", userList);
@@ -49,7 +49,7 @@ public class UserController {
     @RequestMapping("/findAllTOJson")
     @ResponseBody
     // 剔除所有奇数的用户信息
-    @PostFilter("filterObject.id%2!=0")
+    //@PostFilter("filterObject.id%2!=0")
     public List<User> findAllTOJson() {
         List<User> userList = userService.list();
         return userList;
@@ -61,7 +61,7 @@ public class UserController {
      * @return
      */
     @RequestMapping("/update/{id}")
-    @PreAuthorize("#id<3") //针对方法参数的权限控制 只有id<3的才能访问
+    //@PreAuthorize("#id<3") //针对方法参数的权限控制 只有id<3的才能访问
     public String update(@PathVariable Integer id, Model model) {
         User user = userService.getById(id);
         model.addAttribute("user", user);
@@ -107,7 +107,7 @@ public class UserController {
      */
     @GetMapping("/delByIds")
     // 剔除参数为基础的值 1 2 4 6
-    @PreFilter(filterTarget = "ids",value = "filterObject%2==0")
+    //@PreFilter(filterTarget = "ids",value = "filterObject%2==0")
     public String delByIds(@RequestParam(value = "id") List<Integer> ids) {
         for (Integer id : ids) {
             System.out.println(id);
@@ -124,7 +124,7 @@ public class UserController {
     @GetMapping("/{id}")
     @ResponseBody
     // returnObject 返回参数 只能自己查询自己的信息
-    @PostAuthorize("returnObject.username==authentication.principal.username")
+    //@PostAuthorize("returnObject.username==authentication.principal.username")
     public User getById(@PathVariable Integer id) {
         // 获取认证的信息
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
