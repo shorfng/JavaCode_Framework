@@ -82,6 +82,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         // 方式 2：基于 url 控制权限（设置权限不足的信息）
         http.exceptionHandling().accessDeniedHandler(myAccessDeniedHandler);
 
+        // 使用自定义bean完成授权
+        //（1）一级路径限制
+        http.authorizeRequests()
+                .antMatchers("/user/**")
+                .access("@myAuthorizationService.check(authentication,request)");
+        //（2）二级路径限制
+        http.authorizeRequests()
+                .antMatchers("/user/{id}")
+                .access("@myAuthorizationService.check(authentication,request,#id)");
+
+
         // 开启表单认证
         http.formLogin()
                 .loginPage("/toLoginPage")    // 自定义登录页面
