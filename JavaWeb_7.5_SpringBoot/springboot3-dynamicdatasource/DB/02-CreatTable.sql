@@ -1,0 +1,10 @@
+# 创建 product 表
+DROP TABLE IF EXISTS product;
+CREATE TABLE product
+(
+    id    int(20)     NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+    name  VARCHAR(50) NULL DEFAULT NULL COMMENT '商品名称',
+    price VARCHAR(50) NULL DEFAULT NULL COMMENT '价格',
+    PRIMARY KEY (id)
+)ENGINE = InnoDB
+    DEFAULT CHARSET = utf8;
