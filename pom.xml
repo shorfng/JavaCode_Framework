@@ -24,6 +24,7 @@
         <module>JavaWeb_7.4_SpringDataJpa</module>
         <module>JavaWeb_7.5_SpringBoot</module>
         <module>Javaweb_7.6_SpringSecurity</module>
+        <module>JavaWeb_7.8_Quartz</module>
     </modules>
 
 </project>
