@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <!-- 本工程项目信息 -->
+    <groupId>com.loto</groupId>
+    <artifactId>Java_9.4_Spring5</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- 子工程 -->
+    <modules>
+        <module>spring1-custom</module>
+        <module>spring2-ioc-xml</module>
+        <module>spring3-ioc-xml-anno</module>
+        <module>spring4-ioc-anno</module>
+        <module>spring5-aop-xml</module>
+        <module>spring6-aop-xml-anno</module>
+        <module>spring7-aop-anno</module>
+        <module>spring8-tx-xml</module>
+        <module>spring9-tx-xml-anno</module>
+        <module>spring10-tx-anno</module>
+    </modules>
+
+    <!-- 解决Language Level版本问题 -->
+    <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+    </properties>
+
+</project>
