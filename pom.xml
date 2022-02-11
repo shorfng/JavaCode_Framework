@@ -3,10 +3,9 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <!-- 父工程信息 -->
-    <!--【Java】07_JavaWeb_Framework（开源框架）-->
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.loto</groupId>
-    <artifactId>MyCode_JavaWeb_Framework</artifactId>
+    <artifactId>JavaCode_Framework</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
 
@@ -18,13 +17,13 @@
 
     <!-- 子工程信息 -->
     <modules>
-        <module>JavaWeb_7.1_Mybatis</module>
-        <module>JavaWeb_7.2_Spring</module>
-        <module>JavaWeb_7.3_SpringMVC</module>
-        <module>JavaWeb_7.4_SpringDataJpa</module>
-        <module>JavaWeb_7.5_SpringBoot</module>
-        <module>Javaweb_7.6_SpringSecurity</module>
-        <module>JavaWeb_7.8_Quartz</module>
+        <module>Java_9.3_Mybatis3</module>
+        <module>Java_9.4_Spring5</module>
+        <module>Java_9.5_SpringMVC</module>
+        <module>Java_9.6_SpringDataJpa</module>
+        <module>Java_9.7_SpringBoot</module>
+        <module>Java_9.8_SpringSecurity</module>
+        <module>Java_9.10_Quartz</module>
     </modules>
 
 </project>
