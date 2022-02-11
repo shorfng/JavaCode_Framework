@@ -2,7 +2,7 @@ spring:
   datasource:
     username: root
     password: admin
-    url: jdbc:mysql:///JavaWeb_7.5_SpringBoot?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
+    url: jdbc:mysql:///Java_9.7_SpringBoot?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
     driver-class-name: com.mysql.cj.jdbc.Driver
     initialization-mode: always
     # 使用 druid 数据源
