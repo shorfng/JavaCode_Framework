@@ -15,8 +15,13 @@
     <artifactId>mybatis2-custom</artifactId>
 
     <properties>
+        <!-- 解决 Language Level 版本问题 -->
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
+
+        <!-- 解决字符集问题 -->
+        <project.build.sourceEncoding>UTF‐8</project.build.sourceEncoding>         <!-- 源码字符集 -->
+        <project.reporting.outputEncoding>UTF‐8</project.reporting.outputEncoding> <!-- 输出字符集 -->
     </properties>
 
     <dependencies>

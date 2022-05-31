@@ -18,6 +18,10 @@
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
 
+        <!-- 解决字符集问题 -->
+        <project.build.sourceEncoding>UTF‐8</project.build.sourceEncoding>         <!-- 源码字符集 -->
+        <project.reporting.outputEncoding>UTF‐8</project.reporting.outputEncoding> <!-- 输出字符集 -->
+
         <spring.version>5.2.13.RELEASE</spring.version>
     </properties>
 

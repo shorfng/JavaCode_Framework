@@ -13,9 +13,15 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>springboot6-monitor</name>
 	<description>springboot6-monitor</description>
+
 	<properties>
 		<java.version>11</java.version>
+
+        <!-- 解决字符集问题 -->
+        <project.build.sourceEncoding>UTF‐8</project.build.sourceEncoding>         <!-- 源码字符集 -->
+        <project.reporting.outputEncoding>UTF‐8</project.reporting.outputEncoding> <!-- 输出字符集 -->
 	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
