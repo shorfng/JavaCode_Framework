@@ -1,5 +1,9 @@
+spring:
+  application:
+    name: springboot  # 应用名称
+
 server:
-  port: 8090
+  port: 8084   # 应用服务 WEB 访问端口
 
 person:
   id: 2
@@ -18,3 +22,4 @@ acme:
       firstName: 泰森（标准驼峰模式）
       first_name: 泰森（下划线模式）
       FIRST_NAME: 泰森（大写下划线，如果使用系统环境时候推荐使用）
+

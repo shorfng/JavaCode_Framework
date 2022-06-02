@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 // 组合注解，等同于 Spring 中 @Controller + @ResponseBody
 @RestController
 public class StartController {
-    // http://localhost:8080/hello
+    // http://localhost:8081/springboot/hello
     @RequestMapping("/hello")
     public String demo(){
         return "热部署 springboot";
